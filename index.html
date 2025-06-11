@@ -30,7 +30,20 @@
             background: #999;
             border-radius: 0.2em;
         }
-
+        .pdf-button {
+          display: inline-block;
+          padding: 12px 24px;
+          background-color: #007BFF;
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+        }
+    
+        .pdf-button:hover {
+          background-color: #0056b3;
+        }
         strong, b {
             font-weight: 600;
         }
@@ -220,7 +233,9 @@ document.addEventListener('previewUpdated',function() {
 </head>
 <body>
 <div id="MainContent">
-    <!-- Markdown Monster Content -->
+      <a href="Weinig%20Hydromat%202000%20Moulder%20Manual.pdf" class="pdf-button" target="_blank">
+    View Moulder Manual
+      </a>
     <h1 id="weinig-hydromat-2000-moulder"><strong>Weinig Hydromat 2000 Moulder</strong></h1>
 <h3 id="safe-working-procedures-setup--troubleshooting-manual">Safe Working Procedures, Setup &amp; Troubleshooting Manual</h3>
 <p><strong>Document No.:</strong> PP-H2000-MAN-001<br>
