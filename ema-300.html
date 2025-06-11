@@ -1,0 +1,2653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>**EMA-300 End Matcher**</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <style>
+/* Theme CSS */
+html, body {
+    color: #24292e;
+    background: white;
+    font-family: -apple-system,BlinkMacSystemFont, "Segoe UI",Helvetica,Arial,sans-serif,"Segoe UI Emoji","Apple Color Emoji";
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+    padding: 10px;
+    margin: 0;
+}
+
+    body::-webkit-scrollbar {
+        width: 0.6em;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: #999;
+        border-radius: 0.2em;
+    }
+
+strong, b {
+    font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6, .byline, .content-title {
+    margin-top: 1em;
+    margin-bottom: 0.75em;
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 0em;
+}
+
+h1 {
+    font-size: 2em;
+    line-height: 1.2;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #eaecef;
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-size: 1.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #eee;
+}
+
+h3 {
+    display: block;
+    font-size: 1.3em;
+}
+
+h4 {
+    font-size: 1.05em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+a, a:visited {
+    text-decoration: none;
+    color: steelblue;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+p {
+    margin: 0.5rem 0 1rem;
+}
+video {
+    max-width: 100%;
+    max-height: 50vh;
+}
+
+.youtube {
+    width: 720px;
+    height: 400px;
+    max-width: 100%;
+}
+
+
+code {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    color: #333;
+    background: #f2f2f2;
+    font-size: 0.85em;
+}
+
+pre {
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    font-weight: normal;
+    font-size: 85%;
+    line-height: 1.45;
+    margin: 7px 0;
+    padding: 0;
+    max-width: 98%;
+    border: none;
+    overflow: auto;
+    border-radius: 3px;
+    white-space: pre; /* pre-line if you want to wrap*/
+    background: #f2f2f2f2;
+}
+
+    pre > code {
+        white-space: pre;
+        padding: 0.8em !important;
+        display: block;
+        background: transparent;
+        font-weight: normal;
+        white-space: pre; /* pre-line if you want to wrap*/
+    }
+
+        pre > code::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background: #bbb;
+        }
+
+        pre > code::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+table {
+    width: 100%;
+    overflow: auto;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 15px 0;
+    border-color: gray;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 6px 13px;
+    display: table-cell;
+    vertical-align: top;
+}
+
+th {
+    font-weight: bold;
+}
+
+tbody > tr:nth-child(even) {
+    background: #eee;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul > li > ul > li > ul > li {
+    list-style: disc;
+}
+
+ul > li > ul > li {
+    list-style: circle;
+}
+
+.task-list-item {
+    list-style: none;
+    margin-left: -2em;
+}
+/* definition lists can be toggled*/
+dt {
+    font-size: 1.08em;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-top: 0.5em;
+    cursor: pointer;
+}
+
+dd {
+    margin: 0;
+    padding: 0 0 0.2em 1em;
+    display: none;
+}
+
+blockquote {
+    color: #6a737d;
+    font-size: 1em;
+    border-left: 4px #ddd solid;
+    padding: 15px 20px;
+    margin: 14px 2px;
+}
+
+    blockquote *:first-child {
+        margin-top: 0;
+    }
+
+    blockquote *:last-child {
+        margin-bottom: 0;
+    }
+
+hr {
+    margin: 12px 0;
+}
+
+.figure .caption, figure figcaption {
+    font-size: 0.8em;
+    font-style: italic;
+    margin-top: 0;
+}
+/* hidden display, but still part of document flow */
+.hidden {
+    display: none;
+}
+
+.hidden-nowidth {
+    width: 0;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.line-highlight {
+    background: #dcefff !important;
+}
+
+p.line-highlight, h1.line-highlight, h2.line-highlight, h3.line-highlight, h4.line-highlight {
+    border-radius: 4px;
+    margin-left: -0.1em;
+    margin-right: -0.1em;
+    padding-left: 0.1em;
+    padding-right: 0.1em;
+}
+
+#MainContent {
+    margin: 0 auto;
+    padding: 0.2em 1.4em 0.2em 1.7em;
+    max-width: 980px;
+    border: 1px solid #ddd;
+    border-radius: 0.3em;
+}
+@media(max-width: 980px) {
+    #MainContent {
+        border: none;
+        padding: 0.2em 0.8em 0.2em 1em;
+    }
+}
+
+.CAUTION, .IMPORTANT, .INFO, .INFORMATION, .ERROR, .TIP, .NOTE, .WARNING, .DANGER {
+    border: 1px solid;
+    border-radius: 0.3em;
+    padding: 0.8em 0.8em 0.4em 0.8em;
+    margin: 1em 0;
+}
+
+.CAUTION, .ERROR, .DANGER {
+    background-color: #f9d2d2; 
+    border-color: red;
+}
+.CAUTION > h5, .ERROR > h5, .DANGER > h5 {
+    color: red;
+}
+
+.CAUTION h5:before, .ERROR h5:before, .DANGER h5:before {
+    position: relative;
+    top: 0.1em;
+    color: red;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+.IMPORTANT {
+    background-color: #fff9c4;
+    border-color: #ffe564;
+}
+.IMPORTANT > h5 {
+    color: #b58900;
+}
+
+.IMPORTANT h5:before {
+    position: relative;
+    top: 0.1em;
+    color: #b58900;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+.WARNING {
+    background-color: #ffeaa7;
+    border-color: #fdcb6e;
+}
+.WARNING > h5 {
+    color: #e17055;
+}
+
+.WARNING h5:before {
+    position: relative;
+    top: 0.1em;
+    color: #e17055;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+.TIP {
+    background-color: #dff0d8;
+    border-color: #5cb85c;
+}
+.TIP > h5 {
+    color: green;
+}
+
+.TIP h5:before {
+    position: relative;
+    top: 0.1em;
+    color: green;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+.NOTE {
+    background-color: #e7f3ff;
+    border-color: #428bca;
+}
+.NOTE > h5 {
+    color: #428bca;
+}
+
+.NOTE h5:before {
+    position: relative;
+    top: 0.1em;
+    color: #428bca;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+.INFO h5, .INFORMATION h5 {
+    color: #31708f;
+}
+
+.INFO, .INFORMATION {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.INFO h5:before, .INFORMATION h5:before {
+    position: relative;
+    top: 0.1em;
+    color: #31708f;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+xref {
+    color: steelblue;
+    text-decoration: underline;
+}
+
+.code-badge {
+    display: none !important;
+}
+
+    .code-badge.active {
+        display: flex !important;
+    }
+
+    .code-badge:hover {
+        background: #ddd;
+    }
+
+
+.code-badge-language {
+    color: #555;
+    background: #dfdfdf;
+}
+
+@media(min-width: 1080px) {
+    html, body {
+        font-size: 17px;
+    }
+}
+
+@media print {
+    html, body {
+    font-size: 12pt;
+    line-height: 1.2em;
+    color: black;
+    background: white;
+    }
+
+    pre {
+        background: white !important;
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+        pre > code {
+            color: black !important;
+            font-size: 11pt;
+            line-height: 1.1em;
+            padding: 0.3em;
+        }
+
+    a, a:visited {
+        color: #666;
+    }
+
+    p, li, ul, code, pre {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+
+    .code-badge-copy-icon {
+        display: none;
+    }
+}
+
+
+    </style></script>
+    
+</head>
+<body>
+<div id="MainContent">
+    <!-- Markdown Monster Content -->
+    <h1 id="ema-300-end-matcher"><strong>EMA-300 End Matcher</strong></h1>
+<h3 id="safe-working-procedures-setup--troubleshooting-manual">Safe Working Procedures, Setup &amp; Troubleshooting Manual</h3>
+<p><strong>Document No.:</strong> PP-EMA-300-MAN-001<br>
+<strong>Issue:</strong> 1.0  <strong>Release date:</strong> 2025-05-20<br>
+<strong>Prepared by:</strong> Hans Range</p>
+<h3 id="disclaimer-regulatory-compliance-and-copyright">Disclaimer, Regulatory Compliance, and Copyright</h3>
+<p><strong>Scope &amp; Validity</strong><br>
+This Issue 1.0 (released 2025-05-20) supersedes and renders obsolete all previous drafts or editions of manual <strong>PP-EMA-300-MAN-001</strong>. Only the PDF file distributed via the <strong>Pine Profiles Inc.</strong> document portal shall be considered <em>controlled</em>.</p>
+<p><strong>Liability Waiver</strong><br>
+The procedures herein reflect safe‑work methods developed and verified on the EMA‑300 End Matcher installed at <strong>Pine Profiles Inc.’s</strong> production facility. They do <em>not</em> relieve the employer or workers of their legal duty to comply with all applicable regulations, standards, and site‑specific rules. <strong>Pine Profiles Inc.</strong> and the author assume no responsibility for injury, loss, or damage arising from use of this document.</p>
+<p><strong>Regulatory Basis</strong><br>
+This manual references (latest editions):</p>
+<ul>
+<li><p><strong>WorkSafeBC Occupational Health &amp; Safety Regulation</strong> — Part 10 <em>De‑energization and Lockout</em>; Part 12 <em>Tools, Machinery &amp; Equipment</em>. (<a href="https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation">https://www.worksafebc.com/en/law-policy/occupational-health-safety/searchable-ohs-regulation</a>)</p>
+</li>
+<li><p><strong>CSA Z460‑20</strong> <em>Control of Hazardous Energy — Lockout and Other Methods</em>.</p>
+</li>
+<li><p><strong>CSA Z94.3</strong> <em>Eye and Face Protectors</em>; <strong>CSA Z94.2</strong> <em>Hearing Protection Devices</em>.</p>
+</li>
+</ul>
+<p><strong>Copyright &amp; Distribution</strong></p>
+<ul>
+<li>© 2025 <strong>Pine Profiles Inc.</strong> All rights reserved. No portion may be reproduced or transmitted by any means without written permission, except for internal use by licensed operators and maintenance personnel.</li>
+</ul>
+<hr>
+<h2 id="revision-history">Revision History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date (YYYY-MM-DD)</th>
+<th>Author / Editor</th>
+<th>Audited by</th>
+<th>Summary of Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>2025-05-20</td>
+<td>H. Range</td>
+<td></td>
+<td>Initial complete release</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="part-1-general-operation-for-general-operators">Part 1: General Operation (For General Operators)</h2>
+<ol>
+<li><p><strong><a href="#section-1-introduction">Introduction</a></strong></p>
+<ul>
+<li><p><a href="#11-overview-of-the-ema-300-end-matcher">1.1 Overview of the EMA-300 End Matcher</a></p>
+</li>
+<li><p><a href="#12-purpose-and-scope">1.2 Purpose and Scope</a></p>
+</li>
+<li><p><a href="#13-roles-and-responsibilities">1.3 Roles and Responsibilities</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-2-safety-procedures">Safety Procedures</a></strong></p>
+<ul>
+<li><p><a href="#21-training-and-familiarization">2.1 Training and Familiarization</a></p>
+</li>
+<li><p><a href="#22-lockouttagout-deenergization--worksafebc-part10-compliance">2.2 Lockout/Tagout (De‑energization)</a></p>
+</li>
+<li><p><a href="#23-machine-guards-and-safety-devices">2.3 Machine Guards and Safety Devices</a></p>
+</li>
+<li><p><a href="#24-safe-operating-practices">2.4 Safe Operating Practices</a></p>
+</li>
+<li><p><a href="#25-emergency-readiness">2.5 Emergency Readiness</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-3-machine-operation-and-startup">Machine Operation and Startup</a></strong></p>
+<ul>
+<li><p><a href="#31-overview-of-machine-operation">3.1 Overview of Machine Operation</a></p>
+</li>
+<li><p><a href="#32-startup-procedure">3.2 Startup Procedure</a></p>
+</li>
+<li><p><a href="#33-using-the-control-box-and-touchscreen-interface">3.3 Using the Control Box and Touchscreen</a></p>
+<ul>
+<li><p><a href="#operating-modes">Operating Modes</a></p>
+</li>
+<li><p><a href="#touchscreen-operational-pages-and-functions">Touchscreen Operational Pages and Functions</a></p>
+</li>
+</ul>
+</li>
+<li><p><a href="#34-outfeed-system">3.4 Outfeed System</a></p>
+</li>
+<li><p><a href="#35-personnel-positions-and-responsibilities">3.5 Personnel Positions and Responsibilities</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-4-job-duties">Job Duties</a></strong></p>
+<ul>
+<li><p><a href="#41-infeedmachine-operator-duties">4.1 Infeed/Machine Operator Duties</a></p>
+</li>
+<li><p><a href="#42-outfeed-piler-duties">4.2 Outfeed Piler Duties</a></p>
+</li>
+<li><p><a href="#43-reporting-issues">4.3 Reporting Issues</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-5-operator-quality-control-guidelines">Operator Quality Control Guidelines</a></strong></p>
+<ul>
+<li><p><a href="#51-common-quality-issues-to-monitor">5.1 Common Quality Issues to Monitor</a></p>
+</li>
+<li><p><a href="#52-quality-control-responsibilities">5.2 Quality Control Responsibilities</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="part-2-technical-operation-and-maintenance-for-technicians">Part 2: Technical Operation and Maintenance (For Technicians)</h2>
+<ol start="6">
+<li><p><strong><a href="#section-6-advanced-machine-operation-and-setup">Advanced Machine Operation and Setup</a></strong></p>
+<ul>
+<li><p><a href="#61-technician-level-overview">6.1 Technician-Level Overview</a></p>
+</li>
+<li><p><a href="#62-manual-mode-operation">6.2 Manual Mode Operation</a></p>
+</li>
+<li><p><a href="#63-touchscreen-technician-functions">6.3 Touchscreen Technician Functions</a></p>
+</li>
+<li><p><a href="#64-diagnostics-and-monitoring">6.4 Diagnostics and Monitoring</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-7-setup-for-new-profilespatterns">Setup for New Profiles/Patterns</a></strong></p>
+<ul>
+<li><p><a href="#71-safety-notes">7.1 Safety Notes</a></p>
+</li>
+<li><p><a href="#72-backup-blocks">7.2 Backup Blocks</a></p>
+</li>
+<li><p><a href="#73-changing-cutter-heads">7.3 Changing Cutter Heads</a></p>
+</li>
+<li><p><a href="#74-setting-depth-of-cut">7.4 Setting Depth of Cut</a></p>
+</li>
+<li><p><a href="#75-setting-clamps-and-material-width">7.5 Setting Clamps and Material Width</a></p>
+</li>
+<li><p><a href="#76-setting-material-thickness">7.6 Setting Material Thickness</a></p>
+</li>
+<li><p><a href="#77-adjusting-clamps-parallel">7.7 Adjusting Clamps Parallel</a></p>
+</li>
+<li><p><a href="#78-step-by-step-setup-and-verification">7.8 Step-by-Step Setup and Verification</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-8-cutter-head-jointing">Cutter Head Jointing</a></strong></p>
+<ul>
+<li><p><a href="#81-overview-and-use-of-the-custom-jointing-adapter">8.1 Overview and Use of Custom Jointing Adapter</a></p>
+</li>
+<li><p><a href="#82-jointing-procedure-and-best-practices">8.2 Jointing Procedure and Best Practices</a></p>
+</li>
+<li><p><a href="#83-jointing-frequency-and-stone-maintenance">8.3 Jointing Frequency and Stone Maintenance</a></p>
+</li>
+<li><p><a href="#84-additional-safety-reminders">8.4 Additional Safety Reminders</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong><a href="#section-9-comprehensive-troubleshooting">Comprehensive Troubleshooting</a></strong></p>
+<ul>
+<li><a href="#91-rough-or-nicked-finish">9.1 Rough or Nicked Finish</a></li>
+<li><a href="#92-marks-on-the-product">9.2 Marks on the Product</a></li>
+<li><a href="#93-burning-on-end-product">9.3 Burning on End Product</a></li>
+<li><a href="#94-blowouts">9.4 Blowouts</a></li>
+<li><a href="#95-mismatch">9.5 Mismatch</a></li>
+<li><a href="#96-speed-and-clamp-settings">9.6 Speed and Clamp Settings</a></li>
+<li><a href="#97-pusher-speed-issues">9.7 Pusher Speed Issues</a></li>
+<li><a href="#98-machine-stops-unexpectedly-will-not-restart">9.8 Machine Stops Unexpectedly (Will Not Restart)</a></li>
+<li><a href="#99-machine-stopping-often-with-faultjam-warning">9.9 Machine Stopping Often with Fault/Jam Warning</a></li>
+<li><a href="#910-uncut-or-partially-cut-ends">9.10 Uncut or Partially Cut Ends</a></li>
+<li><a href="#911-pusher-struggling-to-move-board-into-cut-position">9.11 Pusher Struggling to Move Board into Cut Position</a></li>
+</ul>
+</li>
+<li><p><strong><a href="#section-10-maintenance">Maintenance</a></strong></p>
+<ul>
+<li><p><a href="#101spindle-belt-tensioning">10.1 Spindle Belt Tensioning</a></p>
+</li>
+<li><p><a href="#102feed-belt-tension">10.2 Feed Belt Tension</a></p>
+</li>
+<li><p><a href="#103encoder-belt-tension">10.3 Encoder Belt Tension</a></p>
+</li>
+<li><p><a href="#104carriage-chain-tension">10.4 Carriage Chain Tension</a></p>
+</li>
+<li><p><a href="#105bed-roll-bearings-and-spring-tension">10.5 Bed Roll Bearings and Spring Tension</a></p>
+</li>
+<li><p><a href="#106air-system-checks">10.6 Air System Checks</a></p>
+</li>
+<li><p><a href="#107drivetrain-driveshaft-worm-gears--worm-wheels">10.7 Drivetrain (Driveshaft, Worm Gears &amp; Worm Wheels)</a></p>
+</li>
+<li><p><a href="#108-feed-rollers">10.8 Feed Rollers</a></p>
+</li>
+<li><p><a href="#109-backup-block-cylinders-and-guides">10.9 Backup-Block Cylinders and Guides</a></p>
+</li>
+<li><p><a href="#1010-pusher-paddles">10.10 Pusher Paddles</a></p>
+</li>
+<li><p><a href="#1011-bolt-integrity-check-carriage--drive-assemblies">10.11 Bolt Integrity Check (Carriage &amp; Drive Assemblies)</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="part-3-appendices-quick-reference-and-support-information">Part 3: Appendices (Quick Reference and Support Information)</h2>
+<ol start="11">
+<li><strong>Appendices</strong></li>
+</ol>
+<ul>
+<li><p><strong>11.1  Quick-Reference Checklists</strong></p>
+</li>
+<li><p><strong>11.2  Glossary</strong></p>
+</li>
+<li><p><strong>11.3  Maintenance / Change-Log Form</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="part-1-general-operation">Part 1: General Operation</h2>
+<h2 id="section-1-introduction">Section 1: Introduction</h2>
+<h3 id="11-overview-of-the-ema-300-end-matcher">1.1 Overview of the EMA-300 End Matcher</h3>
+<p>The EMA-300 End Matcher by High Point Machinery is a high-performance woodworking machine designed for precision end matching operations, specifically creating tongue-and-groove joints on flooring, and paneling products. This robust machine excels in efficiently processing random-length boards at high speeds, providing reliable consistency and quality to meet production demands.</p>
+<p>Equipped with advanced technology including PLC touchscreen controls, adjustable cutting parameters, and dual cutter heads, the EMA-300 ensures accurate, repeatable results while maintaining operator safety through comprehensive guarding and intuitive controls.</p>
+<h3 id="12-purpose-and-scope">1.2 Purpose and Scope</h3>
+<p>This manual is developed specifically for end users, technicians, and maintenance personnel operating and maintaining the EMA-300 End Matcher. The purpose is to provide clear, detailed instructions covering safe operating procedures, comprehensive setup guidelines for new cutting profiles, effective troubleshooting strategies, and thorough maintenance routines, including custom cutter head jointing processes unique to our installation.</p>
+<p>The scope of this document covers all necessary operational aspects, best practices for achieving optimal performance, and adherence to safety standards to ensure workplace safety and equipment longevity. Operators and maintenance teams must familiarize themselves fully with this manual to confidently and safely perform their responsibilities.</p>
+<h3 id="13-roles-and-responsibilities">1.3 Roles and Responsibilities</h3>
+<p><strong>Operators</strong></p>
+<ul>
+<li><p>Adhere strictly to all safety guidelines and procedures outlined in this manual.</p>
+</li>
+<li><p>Execute daily machine setup and operation, ensuring quality control of produced components.</p>
+</li>
+<li><p>Perform routine checks, report issues promptly, and maintain communication with maintenance personnel.</p>
+</li>
+<li><p>Participate in training and refresher courses as required to ensure proficiency.</p>
+</li>
+</ul>
+<p><strong>Maintenance Personnel</strong></p>
+<ul>
+<li><p>Conduct preventive and corrective maintenance as outlined in the maintenance schedule.</p>
+</li>
+<li><p>Manage and perform the jointing of cutter heads using the custom jointing adapter.</p>
+</li>
+<li><p>Diagnose issues, undertake troubleshooting procedures, and coordinate technical support when needed.</p>
+</li>
+<li><p>Ensure the machinery remains in optimal operating condition by adhering to prescribed lubrication, inspection, and maintenance practices.</p>
+</li>
+</ul>
+<p>All users of the EMA-300 End Matcher must read, understand, and apply the contents of this manual to ensure safe, effective, and efficient operations.</p>
+<hr>
+<h2 id="section-2-safety-procedures">Section 2: Safety Procedures</h2>
+<h3 id="21-training-and-familiarization">2.1 Training and Familiarization</h3>
+<p>All operators and maintenance personnel must undergo thorough training on the EMA-300 End Matcher. Training includes reviewing this manual, understanding machine operation, familiarization with control interfaces, safe handling procedures, and recognizing potential hazards. Regular refresher sessions are mandatory to ensure continuous adherence to safety protocols.</p>
+<h3 id="22-lockouttagout-deenergization--worksafebc-part10-compliance">2.2 Lockout/Tagout (De‑energization) — <em>WorkSafeBC Part 10 Compliance</em></h3>
+<p>Before any servicing, maintenance, or jam‑clearing on the EMA‑300 you <strong>must</strong> follow all steps mandated by WorkSafeBC OHS Regulation <strong>Part 10 (§10.3 to §10.11)</strong>:</p>
+<ol>
+<li><p><strong>Isolate every energy source</strong> — electrical, pneumatic, hydraulic, mechanical, gravitational.</p>
+</li>
+<li><p><strong>Apply personal locks and tags</strong> at each isolation point. Locks are to be uniquely keyed to the individual performing the work (OHSR §10.7).</p>
+</li>
+<li><p><strong>Verify zero‑energy state</strong> by pressing <em>Start/Reset</em> at the control box and by exhausting residual air with the dump valve (OHSR §10.9).</p>
+</li>
+<li><p><strong>Record the lockout</strong> on the Maintenance / Change‑Log (§11.3) <em>before</em> work begins.</p>
+</li>
+<li><p><strong>Restore power only when</strong> all guards are re‑installed, tools removed, and every person who placed a lock has removed it (group lockout procedure; OHSR §10.8 &amp; CSA Z460‑20 §7.3).</p>
+</li>
+</ol>
+<p>Cross‑reference: This lockout procedure is reiterated at the start of every task in Sections 7, 8, 10 and in each Quick‑Reference Checklist (§11.1). Activation of LOTO is <strong>mandatory regardless of task duration</strong>.</p>
+<h3 id="23-machine-guards-and-safety-devices">2.3 Machine Guards and Safety Devices</h3>
+<p>Ensure that all safety guards and devices on the EMA-300 are securely in place and operational before machine startup. Regularly inspect guards for damage or wear and report any issues immediately. Never operate the machine if guards or safety devices are missing, damaged, or malfunctioning. Additionally, verify the customized outfeed table length end stop sensor on startup, ensuring the measured length accurately matches the length of the inbound bundle of input material.</p>
+<h3 id="24-safe-operating-practices">2.4 Safe Operating Practices</h3>
+<ul>
+<li><p>Wear appropriate personal protective equipment (PPE) at all times, including safety glasses, hearing protection, high-visibility vest, hardhat, and gloves.</p>
+</li>
+<li><p>Maintain a clean, organized work area, free from debris, obstacles, and tripping hazards.</p>
+</li>
+<li><p>Never bypass or disable safety mechanisms or interlocks.</p>
+</li>
+<li><p>Stay alert and focused; avoid distractions while operating or maintaining the machine.</p>
+</li>
+<li><p>Immediately report any unusual noise, vibration, or operational irregularities to maintenance personnel.</p>
+</li>
+<li><p>Keep hands and clothing away from moving parts and cutters at all times.</p>
+</li>
+</ul>
+<h3 id="25-emergency-readiness">2.5 Emergency Readiness</h3>
+<p>Familiarize yourself with the locations and functions of emergency stop (E-stop) buttons on the EMA-300. Regularly test the functionality of emergency stop mechanisms and report any failures immediately. Ensure clear and unobstructed access to emergency controls. Keep emergency contacts available, all personnel must understand procedures for incident reporting and response.</p>
+<p>Following these safety procedures will significantly reduce risks, ensuring a safer working environment and optimal machine performance.</p>
+<hr>
+<h2 id="section-3-machine-operation-and-startup">Section 3: Machine Operation and Startup</h2>
+<h3 id="31-overview-of-machine-operation">3.1 Overview of Machine Operation</h3>
+<p>The EMA-300 End Matcher operates pneumatically to produce precise tongue-and-groove joints at high speed and accuracy. Operators manage the machine through a user-friendly touchscreen interface, allowing adjustments to basic cutting parameters, timing, and operational sequences.</p>
+<h3 id="32-startup-procedure">3.2 Startup Procedure</h3>
+<p>At the beginning of each shift, the infeed/machine operator must complete the machine startup checklist:</p>
+<ol>
+<li><p>Ensure the machine is powered on by verifying isolator switches are upright (&quot;on&quot; position).</p>
+</li>
+<li><p>Check the air regulator gauge, confirming pressure is set between 5-6 bar.</p>
+</li>
+<li><p>Verify the outfeed system is powered on, and the length end-stop sensor matches the inbound bundle length.</p>
+</li>
+<li><p>Reset the totals on the touchscreen if starting a new job.</p>
+</li>
+<li><p>Press and hold the Start/Reset button on the machine for approximately 2 seconds to start operations.</p>
+</li>
+</ol>
+<h3 id="33-using-the-control-box-and-touchscreen-interface">3.3 Using the Control Box and Touchscreen Interface</h3>
+<p>The EMA-300 control box includes a touchscreen that offers easy access to operational settings and modes suitable for general operators:</p>
+<h4 id="operating-modes">Operating Modes</h4>
+<ul>
+<li><p><strong>Automatic Mode:</strong> Used for continuous, standard production.</p>
+</li>
+<li><p><strong>Feed Through Mode:</strong> Designed for operators to clear jams by moving material through the machine without cutting.</p>
+</li>
+</ul>
+<h4 id="touchscreen-operational-pages-and-functions">Touchscreen Operational Pages and Functions</h4>
+<p><strong>Length Setting Display:</strong></p>
+<ul>
+<li><p><strong>Set Total Length:</strong> Specify total length of materials to be processed. The machine halts automatically once this length is achieved.</p>
+</li>
+<li><p><strong>Actual Length:</strong> Displays the length processed since the start of the operation. Operators can reset this value.</p>
+</li>
+<li><p><strong>Pieces:</strong> Counts the number of processed wood pieces. Resettable as needed.</p>
+</li>
+<li><p><strong>Jams:</strong> Displays total occurrences of jams. Can be reset.</p>
+</li>
+<li><p><strong>Piece Length:</strong> Indicates the length of the individual board being processed, measured via an encoder.</p>
+</li>
+<li><p><strong>Last Piece:</strong> Press and hold this button for 3 seconds to process and eject the last piece of wood, completing the final cutting sequence.</p>
+</li>
+</ul>
+<h4 id="reporting-issues">Reporting Issues</h4>
+<ul>
+<li><strong>Call Technician Button:</strong> Activates notification for immediate technician support in case of repeated or complex issues.</li>
+</ul>
+<h3 id="34-outfeed-system">3.4 Outfeed System</h3>
+<p>Our EMA-300 features a outfeed table with a length end-stop sensor designed to activate the outfeed table motor. Operators must verify this sensor's correct functioning at startup, ensuring measured lengths match inbound bundle dimensions. Regular checks reduce jams and maintain continuous accuracy during processing.</p>
+<p>Each time a length change is required, the operator should:</p>
+<ol>
+<li><p>Lock out the outfeed to ensure safety.</p>
+</li>
+<li><p>Loosen the bolt securing the length sensor and move it to the required length marked on the back of the sensor mounting rail.</p>
+</li>
+<li><p>Confirm the outfeed area is clear of boards and personnel during sensor adjustment.</p>
+</li>
+<li><p>Ensure steel rollers on the outfeed are not positioned directly under the sensor, as this may trigger unintended movement.</p>
+</li>
+<li><p>Power on the outfeed and confirm the sensor does not activate the motors inadvertently.</p>
+</li>
+<li><p>Run a test board through the system while pilers stand clear, carefully checking correct operation.</p>
+</li>
+</ol>
+<h3 id="35-personnel-positions-and-responsibilities">3.5 Personnel Positions and Responsibilities</h3>
+<p>The EMA-300 typically requires three positions for efficient operation:</p>
+<ul>
+<li><p><strong>Infeed/Machine Operator:</strong> Handles material feeding, basic operation, and adjustments.</p>
+</li>
+<li><p><strong>Outfeed Piler:</strong> Manages processed material collection and organization.</p>
+</li>
+<li><p><strong>Technician:</strong> Responsible for in-depth machine setups, troubleshooting, and maintenance tasks, including access to manual mode and setup screens.</p>
+</li>
+</ul>
+<p>Careful adherence to these detailed operation and setup procedures ensures the machine runs safely, efficiently, and accurately, significantly reducing potential downtime or operational errors.</p>
+<hr>
+<h2 id="section-4-job-duties">Section 4: Job Duties</h2>
+<p>Clearly defining job roles and responsibilities ensures smooth machine operation, safety, and productivity. Below are detailed descriptions for each operator role involved with the EMA-300 End Matcher.</p>
+<h3 id="41-infeedmachine-operator-duties">4.1 Infeed/Machine Operator Duties</h3>
+<p>The infeed/machine operator plays a crucial role in maintaining efficient and safe production. Responsibilities include:</p>
+<p><strong>Pre-operation Checks:</strong></p>
+<ul>
+<li><p>Complete the startup checklist daily at shift start.</p>
+</li>
+<li><p>Verify machine power (isolator switches in the upright &quot;on&quot; position).</p>
+</li>
+<li><p>Confirm pneumatic pressure is between 5-6 bar at the air regulator gauge.</p>
+</li>
+<li><p>Check the Job Sheet for job specifications and pile size/orientation, and convey this information to the pilers.</p>
+</li>
+<li><p>Inspect and confirm correct outfeed length sensor positioning.</p>
+</li>
+<li><p>Reset production totals when starting a new job.</p>
+</li>
+</ul>
+<p><strong>Material Handling:</strong></p>
+<ul>
+<li><p>Organize input materials efficiently, ensuring consistent flow into the machine.</p>
+</li>
+<li><p>Regularly inspect incoming boards for quality issues (splits, knots, defects, nails or staples).</p>
+</li>
+<li><p>Orient boards properly on infeed with the product's groove side toward the fence to prevent jams, misalignment, or damage to the product.</p>
+</li>
+</ul>
+<p><strong>Machine Operation:</strong></p>
+<ul>
+<li><p>Operate the machine primarily in Automatic Mode for standard production.</p>
+</li>
+<li><p>Utilize Feed Through Mode when necessary for clearing minor jams without cutting, or when running a bundle for re-piling.</p>
+</li>
+<li><p>Adjust length and totals settings on the touchscreen as directed by production orders.</p>
+</li>
+</ul>
+<p><strong>Safety and Housekeeping:</strong></p>
+<ul>
+<li><p>Always wear required personal protective equipment (PPE) such as gloves, safety glasses, and hearing protection.</p>
+</li>
+<li><p>Maintain cleanliness and organization around the infeed area.</p>
+</li>
+<li><p>Adhere strictly to all machine safety protocols.</p>
+</li>
+<li><p>When cleaning around the workstation, apply lockout (see §2.2 for full lockout steps) procedures while working around and under machine/outfeed.</p>
+</li>
+<li><p>Report all safety hazards, malfunctions, parts found on the floor, or unusual noises immediately.</p>
+</li>
+</ul>
+<p><strong>Communication:</strong></p>
+<ul>
+<li><p>Regularly communicate with pilers and technicians about production statuses, jams, or quality issues.</p>
+</li>
+<li><p>Use the &quot;Call Technician&quot; button promptly when encountering repeated issues or complex jams.</p>
+</li>
+</ul>
+<h3 id="42-outfeed-piler-duties">4.2 Outfeed Piler Duties</h3>
+<p>The outfeed piler ensures finished products are efficiently managed and inspected immediately post-processing:</p>
+<p><strong>Product Handling:</strong></p>
+<ul>
+<li><p>Collect, stack, and organize finished material exiting the EMA-300 as per Order Details.</p>
+</li>
+<li><p>Ensure stacks are squared, even, and stable, applying lathing sticks periodically as specified.</p>
+</li>
+<li><p>Perform thorough visual inspections as the first quality checkpoint, promptly identifying quality concerns and irregularities.</p>
+</li>
+</ul>
+<p><strong>Safety and Organization:</strong></p>
+<ul>
+<li><p>Maintain cleanliness and keep the outfeed area organized and hazard-free.</p>
+</li>
+<li><p>Maintain a safe distance from moving conveyors and mechanical parts.</p>
+</li>
+<li><p>Monitor the function of the outfeed table’s sensor and motors; immediately report irregularities.</p>
+</li>
+</ul>
+<p><strong>Communication:</strong></p>
+<ul>
+<li><p>Immediately inform technicians and the infeed operator upon noticing product quality issues or repeated jams.</p>
+</li>
+<li><p>Collaborate with the infeed operator to address minor jams quickly.</p>
+</li>
+</ul>
+<h3 id="43-reporting-issues">4.3 Reporting Issues</h3>
+<p>Operators should immediately report any operational or safety issues. For detailed guidance on identifying and reporting product quality concerns, refer directly to Section 5: Operator Quality Control Guidelines.</p>
+<ul>
+<li><p>Press the “Technician Call Button” promptly to address machine malfunctions or repeated operational disruptions.</p>
+</li>
+<li><p>Clearly communicate observed issues to technicians upon their arrival.</p>
+</li>
+<li><p>Remain clear of the machine area until instructed by the technician.</p>
+</li>
+</ul>
+<p>This detailed definition of job duties ensures each operator knows their role, responsibilities, and necessary actions to maintain safe and productive operations.</p>
+<hr>
+<h2 id="section-5-operator-quality-control-guidelines">Section 5: Operator Quality Control Guidelines</h2>
+<p>This section provides clear guidelines on inspecting finished products and promptly reporting quality issues. Pilers, as the primary inspectors of outgoing products, play a crucial role alongside infeed operators, ensuring consistent product quality and efficient production.</p>
+<h3 id="51-common-quality-issues-to-monitor">5.1 Common Quality Issues to Monitor</h3>
+<p>Operators and pilers should inspect for:</p>
+<ul>
+<li><p><strong>Corner Blowout:</strong> Damaged corners indicating malfunctioning backup blocks.</p>
+</li>
+<li><p><strong>Rough or Fuzzy Finish:</strong> Poor texture or fuzzy cut edges.</p>
+</li>
+<li><p><strong>Nick or Chip Lines:</strong> Lines indicating damaged cutter edges.</p>
+</li>
+<li><p><strong>Uncut Ends:</strong> Visible lumber stamps or unprocessed ends.</p>
+</li>
+<li><p><strong>Hit-and-Miss or Unsquared Ends:</strong> Ends that are inconsistent or poorly finished.</p>
+</li>
+<li><p><strong>Flaps on Ends:</strong> Tongue-and-groove mismatches creating visible flaps.</p>
+</li>
+<li><p><strong>Misalignment of Cut:</strong> Misaligned or uneven cut relative to the profile.</p>
+</li>
+<li><p><strong>Indentations on Product Face:</strong> Depressions from debris or failing feed rollers.</p>
+</li>
+<li><p><strong>Wax Buildup:</strong> End-seal wax residue affecting finish adhesion.</p>
+</li>
+<li><p><strong>Black Marks:</strong> Staining from equipment dust and grease.</p>
+</li>
+</ul>
+<h3 id="52-quality-control-responsibilities">5.2 Quality Control Responsibilities</h3>
+<p><strong>Pilers:</strong></p>
+<ul>
+<li><p>Continuously inspect all outgoing product for quality issues.</p>
+</li>
+<li><p>Immediately report concerns directly to technicians and infeed operators.</p>
+</li>
+<li><p>Clearly separate defective material to avoid mixing it with good products.</p>
+</li>
+<li><p>Trim defects off of the product at the trim station, if the order details permit.</p>
+</li>
+</ul>
+<p><strong>Infeed Operators:</strong></p>
+<ul>
+<li><p>Visually monitor incoming material and machine operation.</p>
+</li>
+<li><p>Communicate regularly with pilers about observed product quality trends.</p>
+</li>
+</ul>
+<p><strong>All Operators:</strong></p>
+<ul>
+<li><p>Use the technician call button for prompt resolution of quality issues.</p>
+</li>
+<li><p>Maintain cleanliness to minimize product contamination.</p>
+</li>
+<li><p>Do not attempt troubleshooting or repairs; this responsibility is reserved for technicians.</p>
+</li>
+</ul>
+<p>Operators and pilers together ensure immediate identification and reporting of quality issues, crucial for maintaining high production standards.</p>
+<hr>
+<h2 id="part-2-technical-operation-and-maintenance-for-technicians-1">Part 2: Technical Operation and Maintenance (For Technicians)</h2>
+<h2 id="section-6-advanced-machine-operation-and-setup">Section 6: Advanced Machine Operation and Setup</h2>
+<h3 id="61-technician-level-overview">6.1 Technician-Level Overview</h3>
+<p>Technicians have exclusive access to Manual Mode and advanced setup functions to ensure proper machine calibration and troubleshooting. It is crucial that technicians follow all safety protocols closely.</p>
+<h3 id="62-manual-mode-operation">6.2 Manual Mode Operation</h3>
+<p><strong>Safety Note:</strong> When using Manual Mode with the touchscreen exposed, inadvertent touchscreen inputs can cause unintended movements of machine components, posing potential hazards and risk of injury. Always keep the machine hood closed during normal operation. In special circumstances, if visual inspection is required with the hood open and no material running through the machine, technicians must keep hands and body parts clear of all moving elements.</p>
+<p>Manual Mode allows technicians precise control for setup and troubleshooting:</p>
+<ul>
+<li><p><strong>Rear Clamp:</strong> Move rear clamp up/down to adjust clamping position.</p>
+</li>
+<li><p><strong>Front Clamp:</strong> Move front clamp up/down to adjust the front clamping mechanism.</p>
+</li>
+<li><p><strong>Cutter:</strong> Move cutter forward or reverse for precise positioning.</p>
+</li>
+<li><p><strong>Pusher:</strong> Adjust pusher forward or backward to manage material positioning.</p>
+</li>
+<li><p><strong>Backup Blocks:</strong> Turn backup blocks off or on to support material during cutting.</p>
+</li>
+<li><p><strong>Lift:</strong> Raises and lowers the feed beam for visual inspection or board extraction. <strong>Important:</strong> Keep hands clear of clamps when the manual screen is open.</p>
+</li>
+<li><p><strong>OK Button:</strong> Confirm selections or adjustments.</p>
+</li>
+<li><p><strong>Home Button:</strong> Return machine to its home/default position after adjustments.</p>
+</li>
+</ul>
+<h3 id="63-touchscreen-technician-functions">6.3 Touchscreen Technician Functions</h3>
+<p><strong>Setup Display – Page 1:</strong></p>
+<ul>
+<li><p><strong>Infeed Speed:</strong> Adjust feed roller speed (20%-100%) according to material characteristics.</p>
+</li>
+<li><p><strong>Cutter Speed:</strong> Adjust cutter forward movement speed (20%-100%); cutter return speed is fixed and non-adjustable.</p>
+</li>
+</ul>
+<p><strong>Setup Display – Page 2:</strong></p>
+<ul>
+<li><p><strong>Conveyor Delay:</strong> Adjusts the delay time before the conveyor initiates movement after cutting.</p>
+</li>
+<li><p><strong>In Clamp:</strong> Sets the distance wood moves forward after initial sensor detection before clamping. Higher speeds or varying product dimensions may cause inertial effects, resulting in overshooting or undershooting. Periodic adjustments are required.</p>
+</li>
+<li><p><strong>Out Clamp:</strong> Sets the distance wood moves after the rear edge leaves sensor detection before clamping. Adjustments should be made according to material speed and dimensions to prevent crushing or improper positioning.</p>
+</li>
+<li><p><strong>Length Compensation:</strong> Adjusts positional accuracy of boards to ensure precise alignment for cutting. Positive or negative values compensate for positioning inaccuracies. Proper positioning means the board ends on both input and output sides should stop within the cut window, approximately 1.5 inches from each clamp's edge.</p>
+</li>
+</ul>
+<p><strong>Important Considerations for Clamp Parameters:</strong></p>
+<ul>
+<li><p>Proper adjustment of clamp parameters is essential to avoid board end damage. If the outfeed clamp activates prematurely, the forward-moving carriage may crush the board end.</p>
+</li>
+<li><p>If the input clamp delays clamping excessively, the board can slide too far, causing damage from the forward-moving carriage. Boards with damaged ends require trimming to prevent backing block engagement problems and corner blowouts upon reprocessing.</p>
+</li>
+<li><p><strong>Metric/Imperial:</strong> Toggle between metric and imperial units.</p>
+</li>
+<li><p><strong>Diagnostics:</strong> Provides real-time error messages and machine status.</p>
+</li>
+<li><p><strong>Prox:</strong> Allows verification of proximity sensor status and sensitivity throughout the machine.</p>
+</li>
+</ul>
+<h3 id="64-diagnostics-and-monitoring">6.4 Diagnostics and Monitoring</h3>
+<p><strong>Diagnostics Display:</strong></p>
+<ul>
+<li><p>Provides detailed real-time information about operational errors or sensor issues:</p>
+<ul>
+<li><p><strong>Description:</strong> Shows details of the specific issue.</p>
+</li>
+<li><p><strong>Mode:</strong> Indicates the current machine operation mode during the issue.</p>
+</li>
+<li><p><strong>Stage Track Number:</strong> Displays the exact location or stage within the operation cycle where the error occurred.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Proximity Sensor Check:</strong></p>
+<ul>
+<li><p>Visually indicates the status of all machine sensors, including:</p>
+<ul>
+<li><p>Infeed, Cutter, Pusher, and Clamp positions</p>
+</li>
+<li><p>Conveyor and Feed motor overloads</p>
+</li>
+<li><p>Cutter inverter status</p>
+</li>
+<li><p>Sensor verification for proper functionality</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Utilizing these advanced functions ensures comprehensive troubleshooting, precise adjustments, and optimal operational maintenance for consistent machine performance.</p>
+<hr>
+<h2 id="section-7-setup-for-new-profilespatterns">Section 7: Setup for New Profiles/Patterns</h2>
+<h3 id="71-safety-notes">7.1 Safety Notes</h3>
+<ul>
+<li><p><strong>Electrical Lockout:</strong> Ensure the main electrical disconnect is locked out before servicing cutter heads, clamps, backup blocks, or sensors. (see §2.2 for full lockout steps)</p>
+</li>
+<li><p><strong>Pneumatic Lockout:</strong> Disconnect or lock out pneumatic air supply when manually adjusting the pusher cylinder, clamps, or feed rollers.</p>
+</li>
+<li><p><strong>Special Safety Awareness:</strong></p>
+<ul>
+<li><p>Wear gloves, safety glasses, hearing protection, hard hat, and high visibility clothing when working on or around the machine.</p>
+</li>
+<li><p>Maintain clear communication and awareness when machine power is active, especially during manual mode operations.</p>
+</li>
+<li><p>Always avoid placing hands or tools near moving parts during powered adjustments.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="72-backup-blocks">7.2 Backup Blocks</h3>
+<p><strong>Safety Note: Electrical Lockout Required</strong> (see §2.2 for full lockout steps)</p>
+<p>Acquire two appropriate backup blocks from storage, ensuring their geometry matches the intended pattern precisely. Our EMA-300 uses backup blocks designed to match the exact geometry of the product, supporting the smallest features. These blocks typically require gentle sanding and minor touch-ups before use. Take particular care when sanding the dovetail area, as excessive sanding can compromise alignment or cause blocks to slip out of the clamp during operation.</p>
+<p>Initiate setup by <strong>locking out the machine electrically</strong>. Remove existing backup blocks by loosening the 13mm bolts. Ensure receiving dovetail slots in the clamps are clean and free from dust or debris. Slide each new backup block into place on both the input and output sides, tightening clamps securely but carefully to avoid damaging the plastic blocks.</p>
+<h3 id="73-changing-cutter-heads">7.3 Changing Cutter Heads</h3>
+<p><strong>Safety Note: Electrical Lockout Required</strong> (see §2.2 for full lockout steps)</p>
+<p>Proceed to the rear of the machine to remove the dust collection hose and the rear cutter bay guard. Once the spindles are exposed, use provided cutter head release wrenches to remove the spindle nuts. Note the rotation directions of cutter heads are opposite, and so are spindle thread directions—loosen nuts in the direction the cutter knives point.</p>
+<p><strong>Wear gloves when handling cutter heads.</strong> Carefully remove old cutters and store them securely to prevent damage.</p>
+<p>Install new cutter heads, adjusting their axial (height) positions using spindle shims provided in increments typically 0.005, 0.010, 0.020, 0.040, 0.1 inches. Position cutter head knives on the input side pointing to the infeed (counter-clockwise rotation), and on the output side pointing to the outfeed (clockwise rotation). Push the cutter carriage forward with the nuts still off to verify alignment between cutter head features and backup blocks. Adjust shims as necessary, then replace and securely fasten spindle spacers and nuts. Replace the bay guard and dust collection hose.</p>
+<h3 id="74-setting-depth-of-cut">7.4 Setting Depth of Cut</h3>
+<p>Remove electrical lockout and power on. Close the hood and navigate to manual mode to cut in the blocks—this step verifies the depth of cut and cutter head alignment. Hold the green start/reset button to spin cutters, then press cutter forward to perform the initial cut into the backup blocks. Inspect the cut depth, adjust block positions if necessary, and repeat until the blocks are fully profiled.</p>
+<p>Measure the gap between the pusher paddle and the freshly cut backup block on each side, targeting a depth of cut around 1/8 inch (3-4mm). <strong>Power down, engage electrical lockout, and engage pneumatic lockout by turning off air supply at the regulator (see §2.2 for full lockout steps).</strong>  By hand move the pusher cylinder to one side and then the other, adjusting the end-stop bolts to either side of the pusher air cylinder to achieve the desired depth of cut.</p>
+<p><strong>Safety Note: Special lockout procedure during this step. Pneumatic lockout and E-Stop must be engaged before changing sensor locations.</strong></p>
+<p>The pusher home sensors will need to be adjusted with machine power on (for indicator lights). <strong>Make sure that pneumatic lockout is active, E-stop is engaged, and the touchscreen is not in manual mode.</strong> Manually position the pusher against each end stop, adjusting sensors on the opposite side of the cylinder until the red indicator lights activate correctly, and securely lock the sensors in place.</p>
+<h3 id="75-setting-clamps-and-material-width">7.5 Setting Clamps and Material Width</h3>
+<p><strong>Safety Note: Electrical and Pneumatic Lockout Required</strong> (see §2.2 for full lockout steps)</p>
+<p>Engage electrical and pneumatic lockouts. Adjust hold-down clamps according to the required material width (typically between 6-8 inches). Reposition clamp bars using bolt holes along the clamp system sides. The setting difference between 6 and 8-inch widths is typically three holes apart, skipping two bolt holes. For boards thinner than 3/4 inch (19 mm), use the thinner clamp bars provided.</p>
+<p>Adjust the maximum width proximity sensor after changing clamp width. <strong>Remove Lockout</strong> then from the manual screen, press the cutter forward button, ensuring the cutter carriage clearance exceeds the clamp width by about 2 inches (50mm) and stops properly at the sensor. <strong>If adjustments are required, lock out the machine again</strong>, unbolt the sensor mount, reposition, and remount and retest accordingly.</p>
+<h3 id="76-setting-material-thickness">7.6 Setting Material Thickness</h3>
+<p>Update beam height for material thickness settings using Thickness Guides (the flanges with stop bolts on either side of the machine). Raise the feed beam using the Lift button on the touchscreen. Place an offcut piece or gauge block under Thickness Guides at both ends and lower the beam until it rests on the guides. Adjust jacking bolts on the lift cylinders to eliminate any gap differences, ensuring proper settings at both ends.</p>
+<h3 id="77-adjusting-clamps-parallel">7.7 Adjusting Clamps Parallel</h3>
+<p><strong>Safety Note: Machine will need to be unlocked (electrical and pneumatic) to toggle the clamp position and verify positioning, and locked (electrically) when actually making the adjustments.</strong></p>
+<p>Check and adjust clamps for parallel alignment to the bed in both clamped and unclamped positions. The leveling bolts ensure the clamp plate remains level (horizontal) when retracted. Adjust the bolts to maintain equal gaps at the front and rear.</p>
+<p>To verify the clamped position, start the machine, feed two boards one after the other, allow the clamps to engage, stop the machine before cutting begins, <strong>engage electrical lockout</strong> (see §2.2 for full lockout steps), and confirm clamp plates lie flat against the material. Adjust clamp angle using inside stop bolts and apply additional pressure using outside pressure bolts as needed.</p>
+<h3 id="78-step-by-step-setup-and-verification">7.8 Step-by-Step Setup and Verification</h3>
+<ul>
+<li><p>Conduct test runs with a few pieces to confirm cutter head alignment and machine control functions.</p>
+</li>
+<li><p>Execute a startup joint procedure (detailed in the next manual section) to circularize cutting edges and remove initial roughness, ensuring optimal cutting performance.</p>
+</li>
+</ul>
+<p>This thorough setup procedure ensures your EMA-300 operates with precision, safety, and efficiency.</p>
+<hr>
+<h2 id="section-8-cutter-head-jointing">Section 8: Cutter Head Jointing</h2>
+<p>Cutter head jointing is a <strong>light grinding or truing process</strong> performed on the knives while they remain mounted in the cutter head. The purpose is to ensure <strong>uniform knife projection</strong> across all blades, remove minor defects or high spots in the cutting edges, and extend the time between full re-sharpening. This section details the rationale, procedure, safety considerations, and recommended frequency for performing jointing on the EMA-300.</p>
+<h3 id="81-overview-and-use-of-the-custom-jointing-adapter">8.1 Overview and Use of the Custom Jointing Adapter</h3>
+<p>Our <strong>custom jointer adapter</strong> allows jointing of both cutter heads <strong>in situ</strong> on the EMA-300. It fastens to the bedplate using the same bolt locations for the cutter bay cover (which must be removed), positioning the jointing mechanism directly in front of the cutter heads.</p>
+<ul>
+<li><p><strong>Linear Guides and Stone Clamping Assembly:</strong> Two linear guides align with the machine’s spindles. A specialized grinding stone—matching the profile of the cutter head knives—is clamped within the jointing assembly.</p>
+</li>
+<li><p><strong>Stone Alignment:</strong> When installed, the stone rests axially in line with the profile. The technician gently scrapes the stone along the cutter head to confirm contact. A faint dust line on the knife edges indicates proper alignment.</p>
+</li>
+<li><p><strong>Advancement Wheel:</strong> Allows the operator to carefully push or retract the stone relative to the cutter heads, removing small amounts of metal to achieve a uniform edge.</p>
+</li>
+<li><p><strong>Safety Emphasis:</strong> Only one technician should operate the jointing adapter at a time. All other personnel must stay clear, and operators must wear face shields to guard against potential stone breakage or flying debris.</p>
+</li>
+</ul>
+<h4 id="why-jointing-is-important">Why Jointing Is Important</h4>
+<ul>
+<li><p><strong>Uniform Knife Projection:</strong> Ensures each knife shares the cutting load equally, reducing potential lines or chatter in the finished surface.</p>
+</li>
+<li><p><strong>Removes Minor Nicks or High Spots:</strong> Eliminates small defects on the cutting edges without requiring a full resharpen.</p>
+</li>
+<li><p><strong>Extends Time Between Full Sharpenings:</strong> Jointing removes minimal metal, allowing knives to stay in service longer.</p>
+</li>
+<li><p><strong>Maintains Surface Quality:</strong> Prevents one knife from cutting deeper than others, preserving consistent cutting accuracy.</p>
+</li>
+</ul>
+<h3 id="82-jointing-procedure-and-best-practices">8.2 Jointing Procedure and Best Practices</h3>
+<ol>
+<li><p><strong>Lockout and Mounting</strong></p>
+<ul>
+<li><p><strong>Lock out the machine (electrical)</strong> before removing the cutter bay cover and installing the custom jointer (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>Check the bedplate and the underside of the jointer for dust or debris that could misalign the stone.</p>
+</li>
+<li><p>Securely bolt the adapter in place using the cover’s existing mounting holes.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Initial Alignment</strong></p>
+<ul>
+<li><strong>Pull back on the carriage:</strong> Before positioning the stone, ensure the cutter carriage is fully retracted so that you do not advance the stone too far. If the stone is installed while the carriage is forward, future technicians may inadvertently retract the carriage and cause the stone to engage too deeply, risking stone breakage.</li>
+<li><strong>Clamp the stone:</strong> When installing a fresh stone, hold it against the cutter head profile, then slide the stone clamp forward until the stone sits properly in the clamp. Secure the clamp using a 4mm hex key.</li>
+<li><strong>Scrape for contact:</strong> With the stone clamping assembly advanced and the stone installed, gently engage the stone with the cutter head profile. Manually scrape the stone against the knife edges until a faint dust line shows uniform contact across all knives.</li>
+</ul>
+</li>
+<li><p><strong>Starting the Machine</strong></p>
+<ul>
+<li><p>Ensure the immediate work area is clear of additional personnel.</p>
+</li>
+<li><p>The operator must wear a <strong>face shield</strong> alongside other required PPE (e.g., safety glasses, hearing protection).</p>
+</li>
+<li><p>Remove lockout, power on the machine, press the start/reset button to spin up the cutters.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Advancing the Stone</strong></p>
+<ul>
+<li><p>Slowly advance the stone using the wheel until it barely engages the spinning knives.</p>
+</li>
+<li><p>Nudge the advancement wheel in small increments (2–3 slight nudges). This process removes minimal metal, circularizing the edges to a consistent radius.</p>
+</li>
+<li><p>If the stone chatter increases or becomes unstable, back off immediately and power down the machine to investigate.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Retracting the Stone</strong></p>
+<ul>
+<li><p>Gradually retract the stone once the knives have been lightly jointed. <strong>Avoid striking or bumping the back of the stone</strong> against the bedplate, as this could chip or dislocate the stone.</p>
+</li>
+<li><p>Stop the machine and allow the cutter heads to come to a <strong>full stop</strong> before reapplying lockout. Then remove the adapter.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Post-Jointing Checks</strong></p>
+<ul>
+<li><p>Inspect the stone for cracks or damage. If worn or chipped, it must be repaired or replaced before future use.</p>
+</li>
+<li><p>Replace the cutter bay cover and reconnect the dust collection system.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="83-jointing-frequency-and-stone-maintenance">8.3 Jointing Frequency and Stone Maintenance</h3>
+<ul>
+<li><p><strong>Recommended Frequency:</strong> Approximately every 2–3 hours of run time, whenever the finish get's too rough, or when minor nicks appear on the cutting edges. Any time a cutter is removed/replaced/adjusted an initial joint is required as the cutting circle will not be true after replacement.</p>
+</li>
+<li><p><strong>Team Updates:</strong> communicate to other technicians when the cutters were jointed last, as well as the status and condition of the cutting edges.</p>
+</li>
+<li><p><strong>Maintenance of Stones:</strong> If stones become too wide or glazed, the frontal face can be reshaped at a bench grinder—reducing surface area for cleaner, more controlled contact.</p>
+</li>
+</ul>
+<h3 id="84-additional-safety-reminders">8.4 Additional Safety Reminders</h3>
+<ul>
+<li><p><strong>Lockout/Tagout</strong> remains in effect whenever installing or removing the jointer adapter.</p>
+</li>
+<li><p>Wait for the cutter heads to <strong>fully spin down</strong> before removing the adapter. Use this downtime to reapply lockout and check the immediate area for hazards.</p>
+</li>
+<li><p><strong>Face shields</strong> are mandatory to protect against stone breakage or sudden debris ejections.</p>
+</li>
+<li><p>Debris on mating surfaces can cause misalignment or stone breakage, leading to serious damage or injury.</p>
+</li>
+</ul>
+<p>By following these jointing practices, technicians can maintain superior cutting performance, reduce costly downtime, and extend knife life without frequent full re-sharpening.</p>
+<hr>
+<h2 id="section-9-comprehensive-troubleshooting">Section 9: Comprehensive Troubleshooting</h2>
+<p>This section provides a reference for diagnosing and resolving common operational problems encountered on the EMA-300 End Matcher. Each subsection lists symptoms, potential causes, and recommended corrective actions. Always follow <strong>lockout/tagout</strong> procedures (see §2.2 for full lockout steps) and wear the appropriate PPE before attempting any fixes.</p>
+<h3 id="91-rough-or-nicked-finish">9.1 Rough or Nicked Finish</h3>
+<p><strong>Symptom:</strong> The end product surface is rough, showing nicks or pronounced wear lines near the top or bottom of the profile.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Minor cutter defects or high spots on the knives</p>
+</li>
+<li><p>Uneven knife projection</p>
+</li>
+<li><p>General wear on cutting edges</p>
+</li>
+<li><p>Wood Moisture content too high.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Perform Cutter Head Jointing:</strong> Conduct a light jointing pass (see Section 8) to remove small nicks and restore uniform knife projection.</p>
+</li>
+<li><p><strong>Inspect Cutter Heads for Severe Damage:</strong> If jointing cannot remove deep nicks, the cutters may require sharpening or replacement.</p>
+</li>
+<li><p><strong>Check Clamp Settings:</strong> Inadequate clamp pressure or misaligned clamp blocks can cause chatter, especially on corners.</p>
+</li>
+<li><p><strong>Check Moisture:</strong> Check the product with a moisture meter, to narrow down potential cause.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="92-marks-on-the-product">9.2 Marks on the Product</h3>
+<p><strong>Symptom:</strong> Visible marks, impressions, or lines on the finished boards.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p><strong>Wax or Debris Buildup</strong> on feed rollers, bedplate, or outfeed rolls</p>
+</li>
+<li><p><strong>Loose Bolts</strong> on clamp assemblies protruding, stamping the product</p>
+</li>
+<li><p><strong>High Spring Tension</strong> on bottom bed rollers, creating partial or full-width shiny lines</p>
+</li>
+<li><p><strong>Misaligned Bed Roll</strong> where a spring/stud has fallen out, causing the roller to tilt</p>
+</li>
+<li><p><strong>Elevated Support Plates</strong> near the cut area, rubbing or catching the board</p>
+</li>
+<li><p><strong>Dirty or Damaged Rolls</strong> leading to angled or parallel rub lines</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Clean and Inspect Rollers/Bedplate:</strong> Remove wax buildup, resecure any loose or missing bolts.</p>
+</li>
+<li><p><strong>Check Roller Tension and Alignment:</strong> Ensure springs/studs are intact and tension is uniform.</p>
+</li>
+<li><p><strong>Inspect Clamp Assembly:</strong> Tighten countersunk bolts if they have walked loose.</p>
+</li>
+<li><p><strong>Verify Support Plate Height:</strong> Plates should be flush or angled slightly downward on infeed.</p>
+</li>
+<li><p><strong>Distance Measurement:</strong> Measure from the cut end to locate which roller or plate is causing the mark.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="93-burning-on-end-product">9.3 Burning on End Product</h3>
+<p><strong>Symptom:</strong> The wood end exhibits burn marks or scorching.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Dull cutter heads</p>
+</li>
+<li><p>Cutter carriage speed set too slow</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Light Joint or Sharpen:</strong> Give a tune-up joint (see Section 8) or fully sharpen cutters if severely worn.</p>
+</li>
+<li><p><strong>Increase Cutter Carriage Speed:</strong> A faster cut reduces friction and burn.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="94-blowouts">9.4 Blowouts</h3>
+<p><strong>Symptom:</strong> Portions of the product’s end profile (often fine details) blow out or splinter during cutting.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Insufficient backing block support due to wear or misalignment</p>
+</li>
+<li><p>Debris lodged in backing block geometry</p>
+</li>
+<li><p>Backing block cylinder assembly is stuck</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Extend or Adjust Backing Block:</strong> Lock out the machine, loosen the 13mm clamp bolt, and shift the block forward slightly. When cutting resumes, the cutter re-establishes flush support.</p>
+</li>
+<li><p><strong>Clean Backing Block Guides:</strong> Remove any dust/wood chips.</p>
+</li>
+<li><p><strong>Ensure Full Cylinder Motion:</strong> Verify the cylinder assembly moves freely to support the wood fully.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="95-mismatch">9.5 Mismatch</h3>
+<p><strong>Symptom:</strong> Tongues and grooves on the board ends do not match the side profiles, resulting in misaligned or incomplete joints.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Original molding had out-of-alignment profiles</p>
+</li>
+<li><p>Improper clamp setup or insufficient holding force</p>
+</li>
+<li><p>Incorrect cutter axial position relative to the pattern</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Check Clamp Setup:</strong> Verify clamps apply uniform pressure and remain parallel.</p>
+</li>
+<li><p><strong>Confirm Cutter Alignment:</strong> Ensure cutter heads match the desired profile orientation.</p>
+</li>
+<li><p><strong>Examine Source Molding:</strong> If side profiles are misaligned from the start, the end match will likely appear mismatched.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="96-speed-and-clamp-settings">9.6 Speed and Clamp Settings</h3>
+<p><strong>Symptom:</strong> Boards crash, slip, or fail to position consistently when speed or board length/weight changes.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Clamps engage too early/late</p>
+</li>
+<li><p>Board inertia changes at higher lengths or weights</p>
+</li>
+<li><p>Clamp distance not matched to feed speed</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Refine Clamp Delay Settings:</strong> On Setup Display Page 2, adjust “In Clamp” or “Out Clamp” distances.</p>
+</li>
+<li><p><strong>Alter Feed Speed:</strong> Adjust the infeed or conveyor speed if clamp timing alone doesn’t solve slippage or collisions.</p>
+</li>
+<li><p><strong>Account for Board Length/Weight:</strong> Heavier/longer boards may need different settings than lighter/shorter ones.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="97-pusher-speed-issues">9.7 Pusher Speed Issues</h3>
+<p><strong>Symptom:</strong> The pusher fails to return in time for the next board or becomes jammed under boards.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Cylinder cushion adjustment too restrictive</p>
+</li>
+<li><p>Pusher paddles sticking in the down position</p>
+</li>
+<li><p>Boards are being fed too quickly in succession.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Tune Cylinder Cushion:</strong> Ensure the cylinder can complete its return stroke before the next board arrives.</p>
+</li>
+<li><p><strong>Clean and Lubricate Paddles:</strong> Remove any buildup preventing the paddles from flipping freely.</p>
+</li>
+<li><p><strong>More Infeed Gap:</strong> The infeed operator should leave a slightly larger gap between boards.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="98-machine-stops-unexpectedly-will-not-restart">9.8 Machine Stops Unexpectedly (Will Not Restart)</h3>
+<p><strong>Symptom:</strong> The machine halts mid-operation and refuses to restart.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Loose or failing proximity sensors on pusher/clamp cylinders</p>
+</li>
+<li><p>Defective hood switch</p>
+</li>
+<li><p>Insufficient or interrupted air supply</p>
+</li>
+<li><p>Dust or debris blocking wood feed sensors</p>
+</li>
+<li><p>Cold temperatures causing solenoids/relays to stick</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Inspect Cylinder Sensors:</strong> Check the red indicator lights for correct actuation.</p>
+</li>
+<li><p><strong>Check Hood Switch Function:</strong> A faulty switch can prevent restarts.</p>
+</li>
+<li><p><strong>Verify Air Supply:</strong> Ensure regulators and compressors are active.</p>
+</li>
+<li><p><strong>Clean Photoelectric Sensors:</strong> Remove dust or foreign material.</p>
+</li>
+<li><p><strong>Warm the Machine in Cold Conditions:</strong> Keep solenoids/relays above minimum operating temperatures.</p>
+</li>
+<li><p><strong>Reset the Machine:</strong> Power cycle the machine, with a 20sec delay before power up.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="99-machine-stopping-often-with-faultjam-warning">9.9 Machine Stopping Often with Fault/Jam Warning</h3>
+<p><strong>Symptom:</strong> Frequent stoppages accompanied by on-screen jam or fault messages.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Bent or crooked boards failing to feed</p>
+</li>
+<li><p>Sensor misreads due to board surface defects or blemishes</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Extract or Reject Defective Boards:</strong> Manually remove jammed boards (with air supply off).</p>
+</li>
+<li><p><strong>Cover or Trim Board Defects:</strong> Cover dark blemishes or holes that trigger sensors with a sticker or Label or trim defects off before reattempting to machine the board.</p>
+</li>
+<li><p><strong>Adjust Wood Grade:</strong> Severely crooked or damaged boards are unsuitable for the EMA-300.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="910-uncut-or-partially-cut-ends">9.10 Uncut or Partially Cut Ends</h3>
+<p><strong>Symptom:</strong> Boards emerge with no cut or incomplete tongues/grooves on the ends.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Board overshoots cut area due to clamp or speed settings</p>
+</li>
+<li><p>Pusher stop bolt incorrectly set for depth of cut</p>
+</li>
+<li><p>Board rebound when clamp doesn’t engage quickly enough</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Observe Board Positioning:</strong> Ensure the pusher fully seats the board against the stop.</p>
+</li>
+<li><p><strong>Adjust Pusher Stop Bolts:</strong> Increase the depth of cut if tongues are too short.</p>
+</li>
+<li><p><strong>Refine Clamp Timing:</strong> If boards bounce back, reduce clamp delay or slow feed speed.</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="911-pusher-struggling-to-move-board-into-cut-position">9.11 Pusher Struggling to Move Board into Cut Position</h3>
+<p><strong>Symptom:</strong> The pusher cannot reliably force the board into place; boards jam or remain misaligned.</p>
+<ul>
+<li><p><strong>Potential Causes:</strong></p>
+<ul>
+<li><p>Overly tight clamp adjustments</p>
+</li>
+<li><p>Board width exceeding machine settings</p>
+</li>
+<li><p>Excessive vertical/horizontal clamp pressure</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Solutions:</strong></p>
+<ol>
+<li><p><strong>Confirm Board Size:</strong> Verify boards conform to specified width.</p>
+</li>
+<li><p><strong>Reduce Clamp Force:</strong> Loosen clamp rods or pressure bolts slightly if the pusher cannot slide the board.</p>
+</li>
+<li><p><strong>Maintain Clamp Parallelism:</strong> Avoid large adjustments that skew clamp alignment.</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="section-10-maintenance">Section 10: Maintenance</h2>
+<p>This part of the manual groups all routine service tasks required to keep the EMA‑300 running safely and consistently. Follow each interval guideline, log every action in the maintenance log, and always apply <strong>lockout/tagout (LOTO)</strong> as your first step (see §2.2 for full lockout steps).</p>
+<h3 id="101spindle-belt-tensioning">10.1  Spindle Belt Tensioning</h3>
+<p>Proper belt tension is essential for stable spindle rotation and consistent cutting performance. Each spindle motor on the EMA-300 is equipped with two belts. Inspect these belts regularly for cracks, wear, or uneven tension. If the belts on one side have mismatched tension, it often indicates that the motor pulley is not squared relative to the spindle pulley.</p>
+<p><strong>Key Components:</strong></p>
+<ul>
+<li><p><strong>Motor Tension Slide:</strong> Secured by four large bolts (two at the top, two at the bottom)</p>
+</li>
+<li><p><strong>Tensioner Bolts:</strong> Two bolts with locking nuts (top and bottom) that adjust the motor’s position</p>
+</li>
+<li><p><strong>Belts:</strong> Each spindle requires two belts (top and bottom) that must match in tension</p>
+</li>
+</ul>
+<h4 id="steps-to-change-or-tension-the-spindle-belts">Steps to Change or Tension the Spindle Belts</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong></p>
+<ul>
+<li>Ensure the machine is fully locked out before removing guards or panels.</li>
+</ul>
+</li>
+<li><p><strong>Remove Maintenance Panels</strong></p>
+<ul>
+<li>Remove the front and rear maintenance panels for better access to the spindle motor area.</li>
+</ul>
+</li>
+<li><p><strong>Loosen Mounting Bolts</strong></p>
+<ul>
+<li><p>From the back of the machine, partially loosen the four main bolts that secure the motor to the tension slide.</p>
+</li>
+<li><p>From the front, loosen the locking nuts on both tensioner bolts.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Relieve Belt Tension</strong></p>
+<ul>
+<li><p>Turn the tensioner bolts inward (about 13 mm / ½ inch) to reduce belt tension.</p>
+</li>
+<li><p>Use a pry bar to carefully slide the motor closer to the spindle, creating slack in the belts.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Remove Old Belts</strong></p>
+<ul>
+<li>With tension relieved, remove the bottom spindle belt first, then the top spindle belt.</li>
+</ul>
+</li>
+<li><p><strong>Install New Belts</strong></p>
+<ol>
+<li><p>Drape one belt around the motor pulleys, letting it temporarily rest on the top of the motor.</p>
+</li>
+<li><p>Place the second belt around the top pulleys (motor and spindle). Loosen the tensioners further if needed.</p>
+</li>
+<li><p>Return to the first belt and guide it around the bottom pulleys (motor and spindle).</p>
+</li>
+</ol>
+</li>
+<li><p><strong>Reposition Motor and Pre-Tension</strong></p>
+<ul>
+<li><p>Use a pry bar to slide the motor back until the belts rest securely on both pulleys.</p>
+</li>
+<li><p>Confirm that the motor remains square to the machine frame.</p>
+</li>
+<li><p>Turn the tensioner bolts outward until the belts are held firmly in place.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Evenly Tension Belts</strong></p>
+<ul>
+<li><p>Tighten the tensioner bolts in small, alternating increments to avoid skewing the motor.</p>
+</li>
+<li><p>Once initial tension is achieved, add an additional 3–5 mm (1/8–3/16 inch) of tension, measured by the displacement at the tension bolts.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Verify Final Tension</strong></p>
+<ul>
+<li><p>Check both belts for equal, secure tension. If one belt is looser, readjust as necessary.</p>
+</li>
+<li><p>Ensure the motor remains square to the spindle pulley.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Secure Components</strong></p>
+</li>
+</ol>
+<ul>
+<li><p>Fully tighten the four main motor mounting bolts.</p>
+</li>
+<li><p>Retighten the locking nuts on the tensioner bolts.</p>
+</li>
+<li><p>Reattach and secure all maintenance panels.</p>
+</li>
+</ul>
+<p><strong>Inspection and Adjustment Frequency:</strong></p>
+<ul>
+<li><p>Check belt tension weekly or whenever experiencing unusual vibration, squealing, or inconsistent cutting power.</p>
+</li>
+<li><p>Replace belts showing visible cracks, fraying, or excessive glazing.</p>
+</li>
+</ul>
+<h3 id="102feed-belt-tension">10.2  Feed Belt Tension</h3>
+<p>The feed belt transfers power from the feed drive motor to the conveyor rollers. Proper tension prevents belt slippage, squealing, and inconsistent feed speed.</p>
+<p><strong>Inspection Interval:</strong> Weekly or whenever belts squeal, slip, or show visible wear.</p>
+<h4 id="checking-tension">Checking Tension</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Fully isolate electrical and pneumatic power (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>Open the rear maintenance hood to expose the drive components. The <strong>feed drive motor</strong> is at the top‑right of the machine.</p>
+</li>
+<li><p>Press on the belt midway between pulleys. Excessive deflection (&gt; 12 mm / ½ in) indicates low tension.</p>
+</li>
+<li><p>Hold one pulley stationary and gently pull the belt. If it slips, re‑tension is required.</p>
+</li>
+</ol>
+<h4 id="adjusting-tension">Adjusting Tension</h4>
+<ol>
+<li><p>Loosen the four 13 mm bolts securing the motor mounting plate.</p>
+</li>
+<li><p>Locate the <strong>motor flange</strong> with two opposing 10 mm tensioning nuts (top and bottom):</p>
+<ul>
+<li><p>Crack the 10 mm locking nuts on the <strong>bottom</strong> side and back them off several turns.</p>
+</li>
+<li><p>Evenly tighten the <strong>top</strong> 10 mm nuts to raise the motor and increase belt tension.</p>
+</li>
+</ul>
+</li>
+<li><p>Ensure the motor remains parallel to the machine bed and the pulley stays square (perpendicular) to the belt path; adjust nuts evenly to avoid skew.</p>
+</li>
+<li><p>Once correct tension is achieved (firm belt with ~6–9 mm deflection under moderate thumb pressure), retighten the bottom locking nuts and the four main motor bolts.</p>
+</li>
+<li><p>Remove lockout, run the machine briefly, and listen near the motor. Squeals or chirps indicate additional tensioning or alignment is required.</p>
+</li>
+</ol>
+<h3 id="103encoder-belt-tension">10.3  Encoder Belt Tension</h3>
+<p>The encoder belt synchronizes conveyor movement with the feed encoder. Proper tension prevents timing errors and belt tooth skipping.</p>
+<p><strong>Inspection Interval:</strong> Monthly, or after any unexplained length‑measurement errors.</p>
+<h4 id="checking--adjusting">Checking &amp; Adjusting</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Fully isolate power (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>Open the rear maintenance hood. The <strong>feed encoder</strong> is mounted on a slotted bracket on the left‑hand side.</p>
+</li>
+<li><p>Inspect the timing belt for cracked rubber or missing teeth.</p>
+</li>
+<li><p>Lightly press the belt; only minimal slack should be present. Confirm the belt cannot skip when the pulley is rotated by hand.</p>
+</li>
+<li><p>If adjustment is needed:</p>
+<ul>
+<li><p>Loosen the two 8 mm bolts on the encoder bracket slots.</p>
+</li>
+<li><p>Pull the encoder upward to add slight tension – just enough to eliminate play without over‑stretching the belt.</p>
+</li>
+<li><p>Retighten the 8 mm bolts while maintaining encoder alignment.</p>
+</li>
+</ul>
+</li>
+<li><p>Spin the pulley by hand to confirm smooth rotation without belt skip.</p>
+</li>
+<li><p>Close the hood, remove lockout, and verify normal operation.</p>
+</li>
+</ol>
+<h3 id="104carriage-chain-tension">10.4  Carriage Chain Tension</h3>
+<p>The carriage chain synchronizes cutter‑head travel with the carriage drive. Excess slack or wear can cause positioning errors, chatter, or premature sprocket wear.</p>
+<p><strong>Inspection Interval:</strong> Monthly, or whenever positional accuracy degrades.</p>
+<h4 id="checking-tension--wear">Checking Tension &amp; Wear</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Fully isolate electrical and pneumatic power (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>From the <strong>front</strong> of the machine, reach down and gently push/pull the carriage chain in the mid‑span.</p>
+<ul>
+<li><p>Acceptable deflection: <strong>≤ 13 mm (½ in)</strong> in either direction.</p>
+</li>
+<li><p>Inspect chain links for elongation or cracked side plates. <em>(Do <strong>not</strong> add or remove links; replace the chain if it has stretched beyond spec.)</em></p>
+</li>
+</ul>
+</li>
+<li><p>With tension fully relaxed (see adjustment step), rotate each sprocket to check for tooth wear or bearing play.</p>
+</li>
+</ol>
+<h4 id="adjusting-tension-1">Adjusting Tension</h4>
+<ol>
+<li><p>Remove the front maintenance panel to expose the tensioner assembly located on the underside, centered directly beneath the carriage where both ends of the chain are anchored.</p>
+</li>
+<li><p>Locate the <strong>19 mm tensioning nut</strong> on the threaded rod that pulls the chain tight.</p>
+</li>
+<li><p>Turn the nut <strong>clockwise</strong> in small increments to add tension.</p>
+<ul>
+<li>After each adjustment, re‑check mid‑span deflection; stop when deflection is ≤ 13 mm.</li>
+</ul>
+</li>
+<li><p>Verify that sprockets remain aligned and the chain tracks smoothly along its guides.</p>
+</li>
+<li><p>Replace the maintenance panel, remove lockout, and perform a short manual carriage jog to confirm smooth motion without binding.</p>
+</li>
+</ol>
+<h3 id="105bed-roll-bearings-and-spring-tension">10.5  Bed Roll Bearings and Spring Tension</h3>
+<p>The bed rolls support and propel lumber through the EMA‑300, pushing each board up into the feed rolls when the hold‑down clamps release. Free‑rolling bearings and correctly balanced spring pressure prevent surface marring or gouges and ensure the material feeds smoothly out of the machine.</p>
+<p><strong>Inspection Interval:</strong> Monthly, or sooner if marks appear on the product face (see Troubleshooting §9.2).</p>
+<h4 id="checking-bearing-condition--spring-force">Checking Bearing Condition &amp; Spring Force</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Disconnect electrical and pneumatic power (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>Open the main front hood to inspect both the polyurethane‑covered <strong>feed rollers</strong> and the <strong>steel bed rolls</strong>. For spring‑tension adjustment on the bed rolls, remove either the front or rear maintenance panel to access the mounting studs underneath.</p>
+</li>
+<li><p><strong>Rotate Each Roll by Hand:</strong> Rolls should spin freely without grinding or resistance. Any roughness or seizing indicates worn bearings.</p>
+</li>
+<li><p><strong>Check Spring Pressure:</strong> Press down on each roll. They should depress smoothly with moderate hand force and return consistently. Wide variation indicates uneven or incorrect spring tension.</p>
+</li>
+<li><p><strong>Visual Inspection:</strong> Examine roll surfaces for cuts or embedded debris that could mark product.</p>
+</li>
+</ol>
+<h4 id="adjusting-spring-tension">Adjusting Spring Tension</h4>
+<ol>
+<li><p>With lockout engaged (see §2.2 for full lockout steps) and the front panel removed, locate the two mounting studs that pass through each roll support bracket from underneath. Each stud carries a spring, flat washer, and lock‑nut.</p>
+</li>
+<li><p><strong>Evenly tighten or loosen</strong> the lock‑nuts to reduce or increase spring preload.</p>
+<ul>
+<li><p>Adjust both sides of a roll in equal turns to keep the roll parallel.</p>
+</li>
+<li><p>After each adjustment, press the roll again to confirm consistent pressure.</p>
+</li>
+</ul>
+</li>
+<li><p>Replace the panel and run a brief test piece. Fine‑tune if product still shows pressure marks or slips.</p>
+</li>
+</ol>
+<h4 id="replacing-bedroll-bearings">Replacing Bed‑Roll Bearings</h4>
+<ol>
+<li><p><strong>Remove the Roll:</strong></p>
+<ul>
+<li><p>Support the <strong>steel</strong> roll from below, remove both lock‑nuts, springs, and washers from the mounting studs.</p>
+</li>
+<li><p>Once the nuts, washers, and springs are removed it will drop off the studs—do not let it fall or strike the shop floor.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Disassemble the Roll:</strong></p>
+<ul>
+<li><p>Remove snap rings from both ends.</p>
+</li>
+<li><p>Use a brass or aluminum drift to tap the center shaft straight out in a controlled motion.</p>
+</li>
+<li><p>Insert the drift through the bore and, alternating light taps side‑to‑side and top‑to‑bottom, drive each bearing out evenly.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Install New Bearings:</strong></p>
+<ul>
+<li><p>Press new sealed bearings squarely into both ends of the roll.</p>
+</li>
+<li><p>Re‑insert the shaft, reinstall snap rings, and verify smooth rotation.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Reinstall the Roll:</strong></p>
+<ul>
+<li><p>Slide the roll back onto the mounting studs; replace washers, springs, and lock‑nuts.</p>
+</li>
+<li><p>Evenly tension as described above, then spin the roll to confirm free movement.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="106air-system-checks">10.6  Air System Checks</h3>
+<p>Compressed‑air quality and pressure directly affect clamp speed, sensor cleaning jets, and overall pneumatic reliability.</p>
+<p><strong>Inspection Interval:</strong> At every shift start, and after any machine fault related to air pressure or valve response.</p>
+<h4 id="routine-airsupply-inspection">Routine Air‑Supply Inspection</h4>
+<ol>
+<li><p><strong>Check Regulator Pressure</strong> – With air supply on, the main gauge should read <strong>5–6 bar</strong> (72–87 psi). Adjust only if outside this window.</p>
+</li>
+<li><p><strong>Oil Reservoir Level</strong> – Inspect the lubricator bowl; oil must remain above the minimum fill line. Top up with approved pneumatic oil if low.</p>
+</li>
+<li><p><strong>Water Trap</strong> – The moisture separator should be dry. Press the white drain button at the bottom to purge any collected water.</p>
+</li>
+<li><p><strong>Removing Reservoirs for Cleaning/Refill</strong></p>
+<ul>
+<li><p>Pull down the blue collar on the supply line to shut off the air.</p>
+</li>
+<li><p>Depress the release tab on the side of the lubricator or water‑trap bowl, twist <strong>clockwise</strong> to unlock, and remove.</p>
+</li>
+<li><p>Clean, refill, or replace as required; reinstall by twisting <strong>counter‑clockwise</strong> until locked.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Restore Air Supply</strong> – Push the blue collar back up. The machine will not start unless air pressure is present.</p>
+</li>
+</ol>
+<h4 id="leak-and-jetspray-check">Leak and Jet‑Spray Check</h4>
+<ol>
+<li><p>With ambient noise low and supply restored, <strong>listen</strong> for hissing hoses or seals—trace and repair leaks immediately.</p>
+</li>
+<li><p>Open the touchscreen <strong>Manual</strong> page and cycle the clamps:</p>
+<ul>
+<li><p>When the <strong>outfeed clamp</strong> activates, a small air hose situated above the bed sensor/reflector should emit a light dust‑clearing jet.</p>
+</li>
+<li><p>If the jet is too strong (wasting air) or absent (line blocked), trace the hose back to its valve and adjust flow or clear debris. The jet should be just strong enough to keep dust off sensors.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="107drivetrain-driveshaft-worm-gears--worm-wheels">10.7  Drivetrain (Driveshaft, Worm Gears &amp; Worm Wheels)</h3>
+<p>The drivetrain consists of the main steel driveshaft, steel worm gears, and plastic worm wheels that deliver power from the feed motor to the conveyor rolls. Regular greasing and wear inspection prevent sudden failure, feed‑speed fluctuation, and undue resistance in the drive system.</p>
+<p><strong>Inspection Interval:</strong> Monthly lubrication; worm wheel visual check every three months or whenever inconsistent feed motion is observed.</p>
+<h4 id="lubrication-of-driveshaft-bearings">Lubrication of Driveshaft Bearings</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Isolate electrical and pneumatic power (see §2.2 for full lockout steps); remove the dust‑collection hose and raise the rear maintenance hood.</p>
+</li>
+<li><p>Locate the series of pillow‑block bearings supporting the main driveshaft. Each bearing has a visible grease nipple.</p>
+</li>
+<li><p><strong>Pump lithium grease</strong> into each nipple until fresh grease appears at the seal.</p>
+<ul>
+<li><p>Wipe away expelled dark/contaminated grease to prevent it from transferring onto lumber.</p>
+</li>
+<li><p>Record the lubrication date in the maintenance log.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="worm-gear-and-worm-wheel-inspection">Worm Gear and Worm Wheel Inspection</h4>
+<ol>
+<li><p>With the hood still open, rotate the driveshaft by hand (machine locked out) to expose the <strong>steel worm gears</strong> and <strong>plastic worm wheels</strong>.</p>
+</li>
+<li><p><strong>Look for:</strong></p>
+<ul>
+<li><p>Rounded or chipped worm‑gear teeth</p>
+</li>
+<li><p>Excessive backlash or wobble of worm wheels on their shafts</p>
+</li>
+<li><p>Plastic shavings or dust—an early sign of worm‑wheel wear</p>
+</li>
+</ul>
+</li>
+<li><p>If a worm wheel shows significant wear, replace <strong>all worm wheels together</strong> to maintain balanced drive.</p>
+</li>
+</ol>
+<h4 id="replacing-worm-wheels-quick-service">Replacing Worm Wheels (Quick Service)</h4>
+<ol>
+<li><p>Ensure belt tension on the feed‑drive motor is relieved (see §10.2).</p>
+</li>
+<li><p>Remove the snap ring retaining each worn worm wheel and slide it off the shaft.</p>
+</li>
+<li><p>Press new worm wheels onto the shafts, reinstall snap rings, and verify smooth rotation.</p>
+</li>
+</ol>
+<h4 id="replacing-worm-gears-or-driveshaft-bearings-full-service">Replacing Worm Gears or Driveshaft Bearings (Full Service)</h4>
+<ol>
+<li><p>Relieve main motor belt tension (see §10.2).</p>
+</li>
+<li><p>Remove the ten 19 mm bolts, nuts, and washers securing the driveshaft bearing blocks; lift the entire driveshaft assembly out.</p>
+</li>
+<li><p>On a bench, loosen the 3 mm set screw on the shaft collar ahead of the first bearing, slide off the collar, and remove the bearing.</p>
+</li>
+<li><p>Remove snap rings and set screws on each worm gear; slide gears and additional bearings off sequentially.</p>
+</li>
+<li><p>Replace worn worm gears or defective bearings, then <strong>re‑assemble in reverse order</strong>, ensuring each shaft collar is re‑secured against its bearing.</p>
+</li>
+<li><p>Lower the driveshaft assembly back onto its mounts; reinstall and torque the 19 mm hardware.</p>
+</li>
+<li><p>Re‑tension the feed‑motor belt, check gear mesh clearance, and rotate by hand to confirm smooth motion.</p>
+</li>
+</ol>
+<h3 id="108-feed-rollers">10.8 Feed Rollers</h3>
+<p>The polyurethane‑covered feed rollers pull material through the machine once the bed rolls lift the board. Consistent diameter and secure set‑screw locking are critical for even feed speed and drivetrain longevity.</p>
+<p><strong>Inspection Interval:</strong> Quarterly, or immediately if feed speed fluctuates unexpectedly.</p>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Fully isolate power (see §2.2 for full lockout steps) and open the main hood.</p>
+</li>
+<li><p><strong>Check Set‑Screws:</strong> Rotate each feed roller by hand; locate and verify the set‑screws that lock the roller hubs to the driveshafts. Tighten if any looseness is detected.</p>
+</li>
+<li><p><strong>Measure Roller Diameter:</strong> All feed rollers should measure approximately <strong>140 mm (5.5 in)</strong>.</p>
+<ul>
+<li><p>Uneven or reduced diameter slows feed and places extra load on the gearbox.</p>
+</li>
+<li><p>Replace rollers that are worn below tolerance or differ in diameter from the rest.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Visual Inspection:</strong> Look for cuts, glazing, or embedded debris that could slip or mark the product.</p>
+</li>
+</ol>
+<h3 id="109-backup-block-cylinders-and-guides">10.9 Backup Block Cylinders and Guides</h3>
+<p>The backup block cylinders engage and disengage the printed backup blocks, ensuring the wood profile is fully supported during each cut. Misalignment or sticking can cause blow‑outs and uneven end geometry.</p>
+<p><strong>Inspection Interval:</strong> Monthly, or immediately if blow‑out frequency increases (see Troubleshooting §9.4).</p>
+<h4 id="inspection-and-cleaning">Inspection and Cleaning</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Fully isolate electrical and pneumatic power (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>Raise the rear maintenance hood to expose the backup‑block cylinders (two small pneumatic cylinders mounted to the machine table).</p>
+</li>
+<li><p><strong>Check Mounting Bolts:</strong> Each cylinder is secured by a 13 mm bolt and a locking nut located beneath its base. Ensure bolts are tight and there is no vertical play when you gently pull up or press down on the cylinder body.</p>
+</li>
+<li><p><strong>Inspect Guide Tunnels:</strong> Remove the bolts holding the guide tunnels to the table. Each tunnel is located by two precision dowel pins.</p>
+<ul>
+<li><p>Carefully pry up each tunnel with a flat‑blade screwdriver, alternating sides until it lifts free.</p>
+</li>
+<li><p>Clean out dust, grime, or debris; inspect tunnel surfaces for wear.</p>
+</li>
+<li><p>Reinstall the tunnel, ensuring locator pins seat fully before tightening mounting bolts.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Recheck Alignment:</strong> Unlock and power up the machine; from the touchscreen <strong>Manual</strong> page cycle the backup blocks. Observe smooth, full extension without binding. Ensure that the backup blocks are flush with the machine table and not elevated, small adjustments can be made to the bolt and locking nut that mount the cylinders so that they actuate parallel to the machine table.</p>
+</li>
+</ol>
+<h4 id="cylinder-maintenance">Cylinder Maintenance</h4>
+<ul>
+<li><p><strong>Seal Inspection:</strong> While the hood is open and air is on, listen for hissing around cylinder seals. Replace seals or cylinders if leaks persist.</p>
+</li>
+<li><p><strong>Actuation Speed:</strong> If blocks extend too slowly or unevenly, verify the airline flow controls are set identically on both cylinders.</p>
+</li>
+</ul>
+<h3 id="1010-pusher-paddles">10.10 Pusher Paddles</h3>
+<p>The pusher cylinder positions each board for the cut by lifting a steel paddle on either side of the carriage. If the paddle bushings gum up, they may stick in the <strong>down</strong> position, causing jams and crushed board ends.</p>
+<p><strong>Inspection Interval:</strong> Weekly, or immediately if boards overshoot the pusher or jams become frequent (see Troubleshooting §9.7).</p>
+<h4 id="inspection-and-lubrication">Inspection and Lubrication</h4>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> – Fully isolate electrical and pneumatic power (see §2.2 for full lockout steps). Remove any cutter heads to provide safe access inside the carriage bay.</p>
+</li>
+<li><p>Manually pull the carriage fully forward. From the front hood opening, verify each paddle flips up freely.</p>
+<ul>
+<li>Apply a light oil to the paddle bushings if motion feels stiff.</li>
+</ul>
+</li>
+<li><p>Cycle the pusher in <strong>Manual</strong> mode (air on, hood closed) to confirm paddles pop up promptly and retract flush. While cycling, also observe the pusher cylinder itself to ensure fast, smooth extension and retraction—adjust the cylinder’s flow‑control valves if movement is sluggish or uneven.</p>
+</li>
+</ol>
+<h4 id="deep-cleaning--bushing-service">Deep Cleaning &amp; Bushing Service</h4>
+<ol>
+<li><p><strong>Remove Bottom Support Plates:</strong></p>
+<ul>
+<li><p>Two steel support plates bolt to the carriage uprights with M8 × 1.25 hex‑socket bolts (6 mm hex key) accessible inside the cutter bay.</p>
+</li>
+<li><p>Remove both bolts and lift out each plate, exposing the paddle assembly underneath.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Unbolt the Paddle Shaft:</strong></p>
+<ul>
+<li><p>Each paddle pivots on a single 19 mm shoulder bolt that also captures a bronze bushing.</p>
+</li>
+<li><p>Support the paddle, then remove the bolt and lift the paddle/bushing assembly free.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Clean &amp; Inspect:</strong></p>
+<ul>
+<li><p>Degrease the bushing bore and paddle shaft.</p>
+</li>
+<li><p>Replace bushings if oval, scored, or corroded.</p>
+</li>
+<li><p>Lightly grease the new or cleaned bushing ID before reassembly.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Reinstall:</strong></p>
+<ul>
+<li><p>Insert the paddle onto the shaft; install the 19 mm bolt and torque to spec—do not overtighten, as the paddle must pivot freely.</p>
+</li>
+<li><p>Re‑install the bottom support plates. Ensure plates sit <strong>flush</strong> with the bedplate on the left and slope slightly downward on the right to prevent material catch.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Functional Test:</strong></p>
+<ul>
+<li><p>Remove lockout, close the hood, restore air, and cycle the pusher paddles several times.</p>
+</li>
+<li><p>Verify smooth pop‑up action and proper board positioning during a short test run.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1011-bolt-integrity-check-carriage--drive-assemblies">10.11 Bolt Integrity Check (Carriage &amp; Drive Assemblies)</h3>
+<p>Due to vibration, carriage bolts can loosen and eventually shear, causing alignment problems or catastrophic failure.</p>
+<p><strong>Inspection Interval:</strong> Monthly walk‑around, or whenever abnormal vibration/noise is observed.</p>
+<ol>
+<li><p><strong>Lockout/Tagout</strong> and open the cutter bay for access (see §2.2 for full lockout steps).</p>
+</li>
+<li><p>Using the correct tools, <strong>check torque</strong> on all carriage system bolts (spindle mounts, clamp brackets, pusher assemblies, backup‑block cylinders, and drive‑shaft bearing blocks).</p>
+</li>
+<li><p>If any bolt is loose or has backed out:</p>
+<ul>
+<li><p>Remove it, clean the threads, apply a medium‑strength thread‑locker (e.g., Loctite® 242), and reinstall to specified torque.</p>
+</li>
+<li><p>Replace any bolt that shows signs of shearing or pitting.</p>
+</li>
+</ul>
+</li>
+<li><p>Record all retorqued or replaced bolts in the maintenance log.</p>
+</li>
+</ol>
+<hr>
+<h2 id="part-3-appendices-quick-reference-and-support-information-1">Part 3: Appendices (Quick Reference and Support Information)</h2>
+<h2 id="section-11-appendices">Section 11: Appendices</h2>
+<h3 id="111--quick-reference-checklists">11.1  Quick-Reference Checklists</h3>
+<blockquote>
+<p><strong>Tip for printing:</strong> Each table fits on one letter-sized sheet with 0.5 in margins.<br>
+Use landscape orientation for the maintenance tables so operators can tick boxes easily.</p>
+</blockquote>
+<h4 id="1111--daily-pre-operation-checklist-operator">11.1.1  Daily Pre-Operation Checklist (Operator)</h4>
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Item</th>
+<th>Target / Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>☐</td>
+<td><strong>Power isolated</strong> overnight?</td>
+<td>Main isolators down, E-Stop out.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Air regulator</strong> at 5 – 6 bar (72 – 87 psi)</td>
+<td>Drain water trap.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Lubricator bowl</strong> above minimum line</td>
+<td>Use ISO-VG32 pneumatic oil.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Safety guards &amp; hood</strong> intact and latched</td>
+<td>No broken latches or cracked panes.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Outfeed length sensor</strong> set to job spec</td>
+<td>Match inbound bundle length.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Touchscreen totals reset</strong> for new job</td>
+<td>Length, Pieces, Jams = 0.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Cutter bay clear</strong> of loose tools / off-cuts</td>
+<td>Visually confirm before start-up.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Emergency stops</strong> test pass</td>
+<td>Depress &amp; release – machine should not start while engaged.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>PPE worn</strong> (glasses, ear protection, gloves, hi-vis, hard hat)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1112--setup-change-checklist-technician">11.1.2  Setup Change Checklist (Technician)</h4>
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Step</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>☐</td>
+<td>Electrical <strong>LOTO applied</strong></td>
+<td>§2.2</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Backup blocks swapped &amp; clamped</td>
+<td>§7.2</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Cutter heads changed &amp; shimmed</td>
+<td>§7.3</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Depth of cut set (⅛ in ≈ 3 mm)</td>
+<td>§7.4</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Clamp width &amp; sensor re-set</td>
+<td>§7.5</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Beam height set to thickness</td>
+<td>§7.6</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Clamps parallel verified</td>
+<td>§7.7</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Test boards run &amp; inspected</td>
+<td>§7.8</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Initial cutter-head joint complete</td>
+<td>§8.2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1113--daily-maintenance--cleaning-operator">11.1.3  Daily Maintenance &amp; Cleaning (Operator)</h4>
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Task</th>
+<th>Method / Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>☐</td>
+<td>Blow down machine interior</td>
+<td>Low-pressure air; hood OPEN, power OFF.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Wipe feed rollers &amp; outfeed</td>
+<td>Mild solvent; remove dust buildup.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Check dust-collection hose</td>
+<td>Tighten if loose.</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Empty chip bins / vacuum floor</td>
+<td>—</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Log any unusual noise / vibration</td>
+<td>Notify maintenance.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1114--weekly-maintenance-technician">11.1.4  Weekly Maintenance (Technician)</h4>
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Task</th>
+<th>Spec / Torque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>☐</td>
+<td>Spindle belt tension</td>
+<td>Equal top &amp; bottom; see §10.1</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Feed-belt tension &amp; alignment</td>
+<td>§10.2</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Pusher paddle bushings lube</td>
+<td>Light machine oil</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Bolt integrity walk-around</td>
+<td>§10.11</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Grease driveshaft bearings</td>
+<td>Lithium EP-2 until fresh purge</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1115--monthly--250-run-hour-maintenance">11.1.5  Monthly / 250 run-hour Maintenance</h4>
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Task</th>
+<th>Spec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>☐</td>
+<td>Encoder belt check &amp; tension</td>
+<td>§10.3</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Carriage chain sag ≤ ½ in</td>
+<td>§10.4</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Bed-roll spring force balanced</td>
+<td>§10.5</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Inspect worm gears &amp; wheels</td>
+<td>§10.7</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Replace feed rollers ≤ 140 mm Ø</td>
+<td>§10.8</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Backup-block cylinder guides clean</td>
+<td>§10.9</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="1116-quick-start-cheat-sheet-operators">11.1.6 Quick-Start Cheat Sheet (Operators)</h4>
+<blockquote>
+<p>Keep this card at the infeed station.<br>
+Bold items are <strong>mandatory</strong> before pressing START.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>✔</th>
+<th>Step</th>
+<th>Target / Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>☐</td>
+<td><strong>Isolators ON, E-Stops pulled out</strong></td>
+<td>Main panel right-hand side</td>
+</tr>
+<tr>
+<td>☐</td>
+<td><strong>Air pressure 5 – 6 bar (72 – 87 psi)</strong></td>
+<td>Regulator above FRL unit</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Touchscreen → Reset totals</td>
+<td>Length • Pieces • Jams = 0</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Verify outfeed length sensor matches bundle length</td>
+<td>Check mark on rail</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Hood closed &amp; guards latched</td>
+<td>—</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Clear cutter bay of tools/off-cuts</td>
+<td>Visual check</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>PPE on (glasses, ears, gloves, hi-vis, hard-hat)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Press &amp; hold <strong>START/RESET</strong> 2 s</td>
+<td>Wait for cutters to reach speed</td>
+</tr>
+<tr>
+<td>☐</td>
+<td>Feed first test board &amp; inspect ends</td>
+<td>No blow-out, correct length</td>
+</tr>
+</tbody>
+</table>
+<h3 id="emergency-stop-locations">Emergency-stop locations</h3>
+<ol>
+<li>Infeed control box (red mushroom)</li>
+<li>Front Isolator switch</li>
+<li>Rear Isolator switch</li>
+</ol>
+<h3 id="if-jam-occurs">If jam occurs</h3>
+<ol>
+<li>Tap <em>Feed-Through Mode</em> → board clears without cutting</li>
+<li>If cutter bay is blocked → E-Stop, isolate air &amp; power, call technician</li>
+</ol>
+<hr>
+<h3 id="112--glossary-of-ema-300-terms">11.2  Glossary (of EMA-300 Terms)</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Backup Block</strong></td>
+<td>Removable plastic support block whose profile mirrors the board’s end; prevents blow-out during cutting.</td>
+</tr>
+<tr>
+<td><strong>Bed Roll</strong></td>
+<td>Steel roller mounted in the table that lifts product into feed rollers when clamps open.</td>
+</tr>
+<tr>
+<td><strong>Carriage</strong></td>
+<td>Moving assembly that carries both cutter heads along linear guides during each cut cycle.</td>
+</tr>
+<tr>
+<td><strong>Clamp (In/Out)</strong></td>
+<td>Pneumatic hold-down plates that secure the board before the carriage advances.</td>
+</tr>
+<tr>
+<td><strong>Cutter Head</strong></td>
+<td>Rotating spindle-mounted tooling block holding multiple knives for tongue or groove cuts.</td>
+</tr>
+<tr>
+<td><strong>Diagnostics Display</strong></td>
+<td>Touchscreen page showing real-time error codes, sensor states, and mode information.</td>
+</tr>
+<tr>
+<td><strong>Jointing (Knife Joint)</strong></td>
+<td>Light grinding pass across all knives <em>in situ</em> to true their cutting circle.</td>
+</tr>
+<tr>
+<td><strong>Length Compensation</strong></td>
+<td>Parameter that offsets board stop position to ensure the cut lands inside the window.</td>
+</tr>
+<tr>
+<td><strong>LOTO</strong></td>
+<td>Lockout/Tagout – mandatory isolation procedure before maintenance.</td>
+</tr>
+<tr>
+<td><strong>Pusher Paddle</strong></td>
+<td>Weighted steel flap that pushes the board precisely into cut position.</td>
+</tr>
+<tr>
+<td><strong>Sensor – Length End-Stop</strong></td>
+<td>Photo-eye on the custom outfeed table that measures product length to trigger outfeed table drive.</td>
+</tr>
+<tr>
+<td><strong>Setup Display</strong></td>
+<td>Technician-only touchscreen pages where feed speed, clamp delays, and other parameters are tuned.</td>
+</tr>
+<tr>
+<td><strong>Worm Gear / Worm Wheel</strong></td>
+<td>Steel helical gear (worm) driving a plastic spur gear (wheel) that transmits power to feed rolls.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="113--ema-300-maintenance--change-log-form">11.3  EMA-300 Maintenance / Change-Log Form</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Shift</th>
+<th>Technician</th>
+<th><strong>Action Performed</strong></th>
+<th>Details / Part No.</th>
+<th>Next Due (hrs / date)</th>
+<th>Signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+    <!-- End Markdown Monster Content -->
+</div>
+</body>
+</html>
